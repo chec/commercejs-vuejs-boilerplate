@@ -28,5 +28,5 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Additional Information
-[Commerce.js SDK Docs](https://commercejs.com/docs/).
+[Commerce.js SDK Docs](https://commercejs.com/docs/).  
 [Commerce.js API Docs](https://commercejs.com/docs/api/#introduction).
