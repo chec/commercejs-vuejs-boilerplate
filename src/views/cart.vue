@@ -20,6 +20,10 @@
         <div>
           <div class="name">{{item.name}}</div>
           <div class="quantity">Quantity: {{item.quantity}}</div>
+          <div
+            v-if="item.variants.length"
+            class="quantity"
+          >Size: {{item.variants[0].option_name}}</div>
         </div>
         <div class="price">${{item.price.formatted * item.quantity}}</div>
         <button
