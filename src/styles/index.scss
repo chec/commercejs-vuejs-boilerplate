@@ -44,3 +44,16 @@ body{
         box-shadow:none;
     }
 }
+.hide-mobile{
+    display: block;
+    @media only screen and (max-width: 991px) {
+        display: none;
+    }
+}
+.show-mobile{
+
+    display: none;
+    @media only screen and (max-width: 991px) {
+        display: block;
+    }
+}

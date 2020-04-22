@@ -2,10 +2,10 @@
   <div class="product-landing-page">
     <div class="container">
       <div class="row">
-        <div class="col-6">
+        <div class="col-5">
           <h1 style="margin-bottom:1rem">Products</h1>
         </div>
-        <div class="col-6 text-right" v-if="categories">
+        <div class="col-7 text-right" v-if="categories">
           <button class="btn btn-primary btn-clear" @click="selectedCategory = ''">
             Clear
           </button>

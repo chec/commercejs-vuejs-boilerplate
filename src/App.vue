@@ -7,15 +7,35 @@
     </transition>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link class="navbar-brand" to="/">{{merchant.business_name}}</router-link>
+      <button class="navbar-toggler ml-auto"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav show-mobile">
+          <li class="nav-item">
+            <div
+              class="nav-link nav-cart"
+              @click="uiStates.cartVisible = !uiStates.cartVisible">
+              <font-awesome-icon size="lg" icon="shopping-cart" />
+              <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
+            </div>
+          </li>
+      </ul>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav navbar-main ml-auto">
           <li class="nav-item">
             <router-link class="nav-link" to="/">Products</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/about">About</router-link>
           </li>
-          <li class="nav-item" style="position: relative;">
+          <li class="nav-item hide-mobile" style="position: relative;">
             <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
               <font-awesome-icon size="lg" icon="shopping-cart" />
               <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
@@ -159,7 +179,21 @@ export default {
   right: 0px;
 }
 .nav-cart{
+  position: relative;
+  min-width: 40px;
   cursor: pointer;
+}
+
+.navbar-dark .navbar-toggler{
+  border-color:transparent;
+}
+
+.navbar-main .nav-item{
+  @media only screen and (max-width: 991px) {
+      border-top: 1px solid grey;
+      margin-top: 6px;
+      padding-top: 5px;
+  }
 }
 
 .grow-enter-active, .grow-leave-active {

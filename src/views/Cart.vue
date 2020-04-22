@@ -2,10 +2,10 @@
   <div class="cart-items-container">
     <div class="cart-heading clearfix">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-6">
           <div class="title">Items in your Cart</div>
         </div>
-        <div class="col-md-6" v-if="cart.line_items.length">
+        <div class="col-6" v-if="cart.line_items.length">
           <button class="btn btn-primary checkout" @click="$emit('checkout')">Checkout</button>
           <div class="clear-cart" @click="$emit('clear-cart')">Clear Cart</div>
         </div>

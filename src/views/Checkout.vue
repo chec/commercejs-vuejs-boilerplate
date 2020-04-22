@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-8">
+      <div class="col-md-8 order-sm-2 order-md-1">
         <div class="row">
           <div class="col-12">
             <h4>Customer Details</h4>
@@ -147,9 +147,12 @@
                 <input v-model="fields.payment.card.postal_zip_code" type="text" class="form-control">
             </div>
           </div>
+          <div class="col-12 show-mobile">
+            <button class="btn btn-primary mb-4" @click="captureCheckout()">Confirm Order</button>
+          </div>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-md-4 order-sm-1 order-md-2">
         <h4>Cart</h4>
         <div v-if="cart.line_items" class="cart-container">
           <div class="cart-item" v-for="(item, index) in cart.line_items" :key="index">
@@ -185,7 +188,10 @@
             <strong>Total:</strong> {{cart.subtotal.formatted_with_symbol}}
           </div>
         </div>
-        <button class="btn btn-primary" @click="captureCheckout()">Confirm Order</button>
+        <button
+          class="btn btn-primary hide-mobile"
+          @click="captureCheckout()"
+        >Confirm Order</button>
       </div>
     </div>
   </div>
