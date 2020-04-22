@@ -11,7 +11,6 @@
           </button>
           <div class="form-group form-categories">
             <select
-              @change="intiateLoader"
               v-model="selectedCategory"
               class="form-control"
             >
@@ -92,15 +91,9 @@ export default {
         console.error(`Category Retreval Error: ${error.message}`);
       });
     },
-    intiateLoader() {
-      // this.$parent.uiStates.isLoading = true;
-      // setTimeout(() => { this.$parent.uiStates.isLoading = false; }, 1000);
-    },
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .form-categories{
   width:200px;

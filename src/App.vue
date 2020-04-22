@@ -46,7 +46,7 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faCog } from '@fortawesome/free-solid-svg-icons';
-import Cart from './views/cart.vue';
+import Cart from './views/Cart.vue';
 
 
 library.add(faShoppingCart, faCog);
