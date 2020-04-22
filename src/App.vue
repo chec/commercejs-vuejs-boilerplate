@@ -7,17 +7,7 @@
     </transition>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link class="navbar-brand" to="/">{{merchant.business_name}}</router-link>
-      <button class="navbar-toggler ml-auto"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <ul class="navbar-nav show-mobile">
+      <ul class="navbar-nav  ml-auto show-mobile">
           <li class="nav-item">
             <div
               class="nav-link nav-cart"
@@ -27,6 +17,16 @@
             </div>
           </li>
       </ul>
+      <button class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav navbar-main ml-auto">
           <li class="nav-item">
