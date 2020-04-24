@@ -1,4 +1,4 @@
-# Commerce.js Integration Example
+# Forever 21 Demo
 ## Project setup
 ```
 npm install
