@@ -2,6 +2,7 @@ import Commerce from '@chec/commerce.js';
 
 import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import vueSmoothScroll from 'vue2-smooth-scroll';
 import App from './App.vue';
 import router from './router';
 import 'bootstrap';
@@ -9,6 +10,8 @@ import 'bootstrap';
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 const commerce = new Commerce(process.env.VUE_APP_CHEC_PUBLIC_KEY, true);
+
+Vue.use(vueSmoothScroll);
 
 Vue.mixin({
   beforeCreate() {

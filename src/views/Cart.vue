@@ -56,10 +56,9 @@ export default {
   .cart-items-container{
     background-color: #DEDACF;
     position: relative;
-    margin-top:-2rem;
+    margin-top:0rem;
     padding: 2rem 0;
     overflow-x:auto;
-    margin-bottom: 2rem;
   }
   .badge-danger{
     margin-top: 10px;

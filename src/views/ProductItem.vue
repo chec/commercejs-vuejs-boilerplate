@@ -1,79 +1,104 @@
 <template>
-    <div v-if="product">
-        <div class="card product-item">
-            <img class="card-img-top" :src="product.media.source" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title text-center">{{product.name}}</h5>
-                <p class="card-price text-center">${{product.price.formatted}}</p>
-                <p class="text-center">
-                  <span class="badge badge-primary"
-                    v-for="(category, index) in product.categories"
-                    :key="index"
-                  >
-                    {{category.name}}
-                  </span>
-                </p>
-                <div class="card-text text-center" v-html="product.description">Loading...</div>
-                <div class="row justify-content-center" style="margin-top:2rem">
-                    <div class="col-md-4 text-left"  v-if="product.variants">
-                        <div class="form-group"
-                            :key="index"
-                            v-for="(variant, index) in product.variants">
-                            <label for="">{{variant.name}}</label>
-                            <select
-                                v-model="selectedVariant"
-                                class="form-control"
-                                :name="variant.name"
-                                placeholder="Choose..."
-                            >
-                                <option value="">Choose...</option>
-                                <option
-                                    :value="option"
-                                    :key="index"
-                                    v-for="(option, index) in variant.options">
-                                    {{`${option.name} (${option.quantity} in stock)`}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-left">
-                        <div class="form-group">
-                            <label for="">Quantity</label>
-                            <select
-                                v-model="selectedAmount"
-                                @change="checkQuantity()"
-                                class="form-control"
-                                name="amount"
-                                placeholder="Choose..."
-                            >
-                                <option value="">Choose...</option>
-                                <option :value="amount" :key="index" v-for="(amount, index) in 10">
-                                    {{amount}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <button
-                          @click="addToCart()"
-                          :disabled="quantityWarning.enabled"
-                          class="btn btn-primary"
+    <div class="product-item-container" v-if="product">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="card product-item">
+                <div class="row">
+                  <div class="col-6 text-center" v-if="index % 2 === 0">
+                    <img class="card-img-top" :src="product.media.source" alt="Card image cap">
+                  </div>
+                  <div class="col-6">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">{{product.name}}</h5>
+                      <p class="card-price text-center">${{product.price.formatted}}</p>
+                      <p class="text-center">
+                        <span class="badge badge-primary"
+                          v-for="(category, index) in product.categories"
+                          :key="index"
                         >
-                          Add to Cart
-                        </button>
-                        <div v-if="quantityWarning.enabled" class="quantity-remaining swatch-red">
-                        Only {{quantityWarning.amount}} Remaining</div>
+                          {{category.name}}
+                        </span>
+                      </p>
+                      <div
+                        class="card-text text-center"
+                        v-html="product.description"
+                      >Loading...</div>
+                      <div class="row justify-content-center" style="margin-top:2rem">
+                          <div class="col-md-6 text-left"  v-if="product.variants">
+                              <div class="form-group"
+                                  :key="index"
+                                  v-for="(variant, index) in product.variants">
+                                  <label for="">{{variant.name}}</label>
+                                  <select
+                                      v-model="selectedVariant"
+                                      class="form-control"
+                                      :name="variant.name"
+                                      placeholder="Choose..."
+                                  >
+                                      <option value="">Choose...</option>
+                                      <option
+                                          :value="option"
+                                          :key="index"
+                                          v-for="(option, index) in variant.options">
+                                          {{`${option.name} (${option.quantity} in stock)`}}
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-6 text-left">
+                              <div class="form-group">
+                                  <label for="">Quantity</label>
+                                  <select
+                                      v-model="selectedAmount"
+                                      @change="checkQuantity()"
+                                      class="form-control"
+                                      name="amount"
+                                      placeholder="Choose..."
+                                  >
+                                      <option value="">Choose...</option>
+                                      <option
+                                        :value="amount"
+                                        :key="index"
+                                        v-for="(amount, index) in 10"
+                                      >
+                                          {{amount}}
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <button
+                                @click="addToCart()"
+                                :disabled="quantityWarning.enabled"
+                                class="btn btn-primary"
+                              >
+                                Add to Cart
+                              </button>
+                              <div
+                                v-if="quantityWarning.enabled"
+                                class="quantity-remaining swatch-red"
+                              >
+                              Only {{quantityWarning.amount}} Remaining</div>
+                          </div>
+                      </div>
                     </div>
+                  </div>
+                  <div class="col-6 text-center" v-if="index % 2 !== 0">
+                    <img class="card-img-top" :src="product.media.source" alt="Card image cap">
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
         </div>
+      </div>
 </template>
 
 <script>
 export default {
   name: 'ProductItem',
-  props: ['product'],
+  props: ['product', 'index'],
   data() {
     return {
       selectedVariant: '',
@@ -135,5 +160,14 @@ export default {
         margin-top:2px;
         font-size: 11px;
         color: #dc3545;
+    }
+    .product-item-container{
+      min-height:80vh;
+      padding: 20vh 0;
+      background: #96909c;
+      background: -moz-linear-gradient(top,  #96909c 0%, #c9bdc5 100%);
+      background: -webkit-linear-gradient(top,  #96909c 0%,#c9bdc5 100%);
+      background: linear-gradient(to bottom,  #96909c 0%,#c9bdc5 100%);
+
     }
 </style>

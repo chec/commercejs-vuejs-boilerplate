@@ -7,42 +7,14 @@
     </transition>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link class="navbar-brand" to="/">{{merchant.business_name}}</router-link>
-      <ul class="navbar-nav  ml-auto show-mobile">
-          <li class="nav-item">
-            <div
-              class="nav-link nav-cart"
-              @click="uiStates.cartVisible = !uiStates.cartVisible">
-              <font-awesome-icon size="lg" icon="shopping-cart" />
-              <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
-            </div>
-          </li>
+      <ul class="navbar-nav navbar-main ml-auto">
+        <li class="nav-item hide-mobile" style="position: relative;">
+          <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
+            <font-awesome-icon size="lg" icon="shopping-cart" />
+            <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
+          </div>
+        </li>
       </ul>
-      <button class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav navbar-main ml-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Products</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
-          <li class="nav-item hide-mobile" style="position: relative;">
-            <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
-              <font-awesome-icon size="lg" icon="shopping-cart" />
-              <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
-            </div>
-          </li>
-        </ul>
-      </div>
     </nav>
     <transition name="grow">
       <cart
@@ -61,12 +33,14 @@
       :cart="cart"
       :orderRef="orderRef"
     />
+    <Footer/>
   </div>
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faCog } from '@fortawesome/free-solid-svg-icons';
 import Cart from './views/Cart.vue';
+import Footer from './views/Foot.vue';
 
 
 library.add(faShoppingCart, faCog);
@@ -75,6 +49,7 @@ export default {
   name: 'app',
   components: {
     Cart,
+    Footer,
   },
   data() {
     return {
@@ -108,7 +83,7 @@ export default {
     getMerchantInformation() {
       this.$commerce.merchants.about().then((result) => {
         this.merchant = result;
-        document.title = `${this.merchant.business_name} - Products`;
+        document.title = `${this.merchant.business_name} - Summer Look`;
       }).catch((error) => {
         console.error(`Merchant Error: ${error.message}`);
       });
@@ -159,10 +134,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-.navbar{
-  margin-bottom: 2rem;
 }
 .cart-amount{
   background-color: #DEDACF;
@@ -221,5 +192,8 @@ export default {
 }
 .fade-enter, .fade-leave-to{
   opacity: 0;
+}
+.navbar-brand{
+  text-transform: uppercase;
 }
 </style>
