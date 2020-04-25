@@ -8,6 +8,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link class="navbar-brand" to="/">
         <img src="./assets/logo_forever.png" alt="Forever21 logo">
+        <Logo />
       </router-link>
       <ul class="navbar-nav navbar-main ml-auto">
         <li class="nav-item hide-mobile" style="position: relative;">
@@ -41,6 +42,7 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import Logo from './assets/logo_forever.svg';
 import Cart from './views/Cart.vue';
 import Footer from './views/Foot.vue';
 
@@ -52,6 +54,7 @@ export default {
   components: {
     Cart,
     Footer,
+    Logo,
   },
   data() {
     return {
@@ -149,7 +152,7 @@ h4 {
 }
 
 .cart-amount{
-  background-color: #DEDACF;
+  background-color: #F6A58C;
   width: 20px;
   height: 20px;
   font-size: 13px;

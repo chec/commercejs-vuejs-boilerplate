@@ -54,7 +54,7 @@ export default {
 <style scoped lang="scss">
 
   .cart-items-container{
-    background-color: #DEDACF;
+    background-color: #F1F3F4;
     position: relative;
     margin-top:0rem;
     padding: 2rem 0;

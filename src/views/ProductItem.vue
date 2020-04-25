@@ -30,20 +30,19 @@
                                   :key="index"
                                   v-for="(variant, index) in product.variants">
                                   <label for="">{{variant.name}}</label>
-                                  <select
+                                  <!-- <select
                                       v-model="selectedVariant"
                                       class="form-control"
                                       :name="variant.name"
                                       placeholder="Choose..."
-                                  >
-                                      <option value="">Choose...</option>
-                                      <option
+                                  > -->
+                                      <div
                                           :value="option"
                                           :key="index"
                                           v-for="(option, index) in variant.options">
-                                          {{`${option.name} (${option.quantity} in stock)`}}
-                                      </option>
-                                  </select>
+                                        <span>{{option.name}}</span>
+                                      </div>
+                                  <!-- </select> -->
                               </div>
                           </div>
                           <div class="col-md-6 text-left">

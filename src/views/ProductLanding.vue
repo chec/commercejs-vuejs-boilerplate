@@ -70,8 +70,8 @@ export default {
 <style scoped lang="scss">
 .hero-banner {
   height: calc(100vh - 56px);
-  background-repeat: no-repeat;
-  background-position: center center;
+  //background-repeat: no-repeat;
+  //background-position: center center;
   background-size: cover;
   .copy-container{
     margin-top: 30vh;
