@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-12 text-center">
         <h1 style="margin-bottom:2rem">Checkout</h1>
-        <hr>
       </div>
     </div>
     <div class="row">
@@ -107,7 +106,7 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <h4>Payment Options</h4>
+            <h4>Payment Details</h4>
             <hr>
           </div>
         </div>
@@ -121,14 +120,14 @@
           </div>
           <div class="col-6">
             <div class="form-group">
-                <label for="">Expirey Month</label>
+                <label for="">Expiry Month</label>
                 <!-- eslint-disable-next-line max-len -->
                 <input v-model="fields.payment.card.expiry_month" type="text" class="form-control">
             </div>
           </div>
           <div class="col-6">
             <div class="form-group">
-                <label for="">Expirey Year</label>
+                <label for="">Expiry Year</label>
                 <!-- eslint-disable-next-line max-len -->
                 <input v-model="fields.payment.card.expiry_year" type="text" class="form-control">
             </div>
@@ -153,7 +152,7 @@
         </div>
       </div>
       <div class="col-md-4 order-sm-1 order-md-2">
-        <h4>Cart</h4>
+        <h4>Order Summary</h4>
         <div v-if="cart.line_items" class="cart-container">
           <div class="cart-item" v-for="(item, index) in cart.line_items" :key="index">
             <div class="row">
@@ -305,52 +304,65 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .badge-danger{
-      position: absolute;
-      right: 22px;
-      top: 1px;
-    }
-    .total{
-      padding: .5rem !important;
-    }
-    .btn{
-        margin-top: 32px;
-        width: 100%;
-    }
-    .form-control{
-        width: 100%;
-    }
-    .cart-container{
-      border: 1px solid #dad6d3;
-      .cart-item{
-        position: relative;
-        padding:.5rem 0;
-        border-bottom: 1px solid #dad6d3;
-        &:last-of-type{
-          border-bottom: none;
-        }
-      }
-      .thumb-container{
-        text-align: center;
-        border-right: 1px solid #dad6d3;
-      }
-      .cart-thumb{
-        height: 70px;
-      }
-      .name{
-        font-weight: 600;
-      }
-      .quantity{
-        font-size: 12px;
-      }
-    }
-    .form-control{
-      background-color: white;
-      &:disabled{
-        background-color: #e9ecef;
+
+  input {
+    border: 1px solid #858585;
+    border-radius: 0;
+  }
+
+  select {
+    border-radius: 0;
+  }
+
+  h4{
+    color: #1c1c1c;
+  }
+  .badge-danger{
+    position: absolute;
+    right: 22px;
+    top: 1px;
+  }
+  .total{
+    padding: .5rem !important;
+  }
+  .btn{
+      margin-top: 32px;
+      width: 100%;
+  }
+  .form-control{
+      width: 100%;
+  }
+  .cart-container{
+    border: 1px solid #dad6d3;
+    .cart-item{
+      position: relative;
+      padding:.5rem 0;
+      border-bottom: 1px solid #dad6d3;
+      &:last-of-type{
+        border-bottom: none;
       }
     }
-    h4{
-      margin-top: 2rem;
+    .thumb-container{
+      text-align: center;
+      border-right: 1px solid #dad6d3;
     }
+    .cart-thumb{
+      height: 70px;
+    }
+    .name{
+      font-weight: 600;
+    }
+    .quantity{
+      font-size: 12px;
+    }
+  }
+  .form-control{
+    background-color: white;
+    &:disabled{
+      background-color: #e9ecef;
+    }
+  }
+  h4{
+    margin-top: 2rem;
+  }
 </style>

@@ -23,27 +23,32 @@ body{
     }
 }
 .btn.btn-primary{
-    background-color: #1c1c1c;
-    border-color: #1c1c1c;
-    color: #EFEBE7;
+    background-color: #000;
+    border-color: #000;
+    color: white;
+    border-radius: 0;
     &:hover,
     &:active,
     &:focus{
-        background-color: #000 !important;
-        border-color: #000 !important;
+        background-color: #1c1c1c !important;
+        border-color: #1c1c1c !important;
         box-shadow:none;
     }
 }
 .btn-danger, .badge-danger{
-    background-color: #CA2F0C;
-    border-color: #CA2F0C;
+    background-color: transparent;
+    border-color: #1c1c1c;
+    border-radius: 0;
     font-size: 11px;
+    color: #1c1c1c;
+    cursor: pointer;
     &:hover,
     &:active,
     &:focus{
-        background-color: #CA2F0C !important;
-        border-color: #CA2F0C !important;
+        background-color: #1c1c1c !important;
+        border-color: #1c1c1c !important;
         box-shadow:none;
+        color: white;
     }
 }
 .hide-mobile{

@@ -14,7 +14,7 @@
         <li class="nav-item hide-mobile" style="position: relative;">
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
               <img src="./assets/cart_black.svg" alt="Shopping cart icon">
-            <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
+            <div class="cart-count" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
           </div>
         </li>
       </ul>
@@ -138,7 +138,6 @@ export default {
   font-family: 'Muli', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
 
 h1, h2{
@@ -151,7 +150,7 @@ h4 {
   color: grey;
 }
 
-.cart-amount{
+.cart-count{
   background-color: #F6A58C;
   width: 20px;
   height: 20px;
@@ -207,7 +206,7 @@ h4 {
   width: 100%;
   position: fixed;
   z-index: 2;
-  background-color: #EFEBE7;
+  background-color: #fff;
   top:0px;
   bottom:0px;
   text-align: center;
