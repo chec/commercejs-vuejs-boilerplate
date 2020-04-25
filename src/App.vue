@@ -2,15 +2,17 @@
   <div id="app">
     <transition name="fade">
       <div v-if="uiStates.isLoading" class="page-loader">
-          <font-awesome-icon size="4x" icon="cog" spin />
+          <font-awesome-icon size="4x" icon="spinner" pulse />
       </div>
     </transition>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <router-link class="navbar-brand" to="/">{{merchant.business_name}}</router-link>
+      <router-link class="navbar-brand" to="/">
+        <img src="./assets/logo_forever.png" alt="Forever21 logo">
+      </router-link>
       <ul class="navbar-nav navbar-main ml-auto">
         <li class="nav-item hide-mobile" style="position: relative;">
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
-            <font-awesome-icon size="lg" icon="shopping-cart" />
+              <img src="./assets/cart_black.svg" alt="Shopping cart icon">
             <div class="cart-amount" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
           </div>
         </li>
@@ -38,12 +40,12 @@
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faShoppingCart, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Cart from './views/Cart.vue';
 import Footer from './views/Foot.vue';
 
 
-library.add(faShoppingCart, faCog);
+library.add(faShoppingCart, faSpinner);
 
 export default {
   name: 'app',
@@ -130,11 +132,22 @@ export default {
 <style lang="scss">
 @import 'styles/index.scss';
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Muli', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
+h1, h2{
+  font-weight: 700;
+  color: black;
+}
+
+h4 {
+  font-weight: 600;
+  color: grey;
+}
+
 .cart-amount{
   background-color: #DEDACF;
   width: 20px;
@@ -167,6 +180,17 @@ export default {
   }
 }
 
+.navbar {
+  display: flex;
+  position: relative;
+  border-bottom: 2px solid black;
+
+  .navbar-brand{
+    display: flex;
+  }
+}
+
+
 .grow-enter-active, .grow-leave-active {
   transition: all .5s;
 }
@@ -193,7 +217,5 @@ export default {
 .fade-enter, .fade-leave-to{
   opacity: 0;
 }
-.navbar-brand{
-  text-transform: uppercase;
-}
+
 </style>

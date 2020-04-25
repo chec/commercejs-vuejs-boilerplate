@@ -10,7 +10,7 @@
                   </div>
                   <div class="col-6">
                     <div class="card-body">
-                      <h5 class="card-title text-center">{{product.name}}</h5>
+                      <h2 class="card-title text-center">{{product.name}}</h2>
                       <p class="card-price text-center">${{product.price.formatted}}</p>
                       <p class="text-center">
                         <span class="badge badge-primary"
@@ -138,6 +138,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+    h2{
+      font-size: 50px;
+    }
     .btn{
         margin-top: 32px;
         width: 100%;
@@ -164,10 +167,10 @@ export default {
     .product-item-container{
       min-height:80vh;
       padding: 20vh 0;
-      background: #96909c;
-      background: -moz-linear-gradient(top,  #96909c 0%, #c9bdc5 100%);
-      background: -webkit-linear-gradient(top,  #96909c 0%,#c9bdc5 100%);
-      background: linear-gradient(to bottom,  #96909c 0%,#c9bdc5 100%);
+      background: #F1F3F4;
+      // background: -moz-linear-gradient(top,  #96909c 0%, #c9bdc5 100%);
+      // background: -webkit-linear-gradient(top,  #96909c 0%,#c9bdc5 100%);
+      // background: linear-gradient(to bottom,  #96909c 0%,#c9bdc5 100%);
 
     }
 </style>

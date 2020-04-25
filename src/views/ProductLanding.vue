@@ -1,13 +1,13 @@
 <template>
   <div class="product-landing-page">
-    <div class="hero-banner" style="background-image: url('./images/outfit.jpeg');">
+    <div class="hero-banner" style="background-image: url('./images/hero_img.png');">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
             <div class="copy-container">
               <h1>Shop the Look</h1>
               <!-- eslint-disable-next-line max-len -->
-              <h4>Include an add all products. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti excepturi eaque veritatis provident enim sint vero sit accusamus consequatur! Beatae esse odit non dolore eius distinctio veritatis consequatur minus laudantium.</h4>
+              <h4>Include an add all products. Lorem ipsum dolor sit amet, consectetur</h4>
               <a class="btn btn-primary"
                 href="#productListing"
                 v-smooth-scroll="{ duration: 1000, updateHistory: false }"
