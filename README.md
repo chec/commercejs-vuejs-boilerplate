@@ -1,5 +1,8 @@
 # Forever 21 Demo
 ## Project setup
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1876dee0-d744-40ad-9b90-57d794f85fc2/deploy-status)](https://app.netlify.com/sites/forever21-demo/deploys)
+
 ```
 npm install
 ```
