@@ -1,9 +1,27 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css);
-
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;600;700&display=swap');
+@import 'variables';
 
 body{
     background-color: white;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 40px;
+}
+
+h1, h2{
+  font-weight: 700;
+  color: black;
+}
+
+h4 {
+  font-weight: 600;
+  color: grey;
 }
 
 .bg-dark{
@@ -22,6 +40,122 @@ body{
         }
     }
 }
+
+// .button-primary {
+//   position: absolute;
+//   // top: 50%;
+//   // left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+.button-primary {
+  text-align: center;
+  color: white;
+  background-color: black;
+  padding: 15px 25px;
+  margin-right: 20px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  
+  span {
+      position: relative;
+      z-index: 100;
+  }
+  
+  &:before, &:after {
+      content:'';
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+  }
+  
+  &:before {
+      transform: translate3d(-100%, 0, 0);
+      background-color: white;
+      transition: transform 300ms ease-in-out;
+
+      span{
+        color: black;
+      }
+  }
+  
+  &:after {
+      background-color: $color-brand;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 300ms 300ms cubic-bezier(.16,.73,.58,.62);
+  }
+  
+  &:hover {
+      &:before {
+          transform: translate3d(0,0,0);
+      }
+      
+      &:after {
+          transform: translate3d(0,0,0);
+      }
+  }
+}
+
+.button-secondary {
+  color: black;
+  background-color: transparent;
+  border: 2.5px solid black;
+  padding: 15px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  
+  span {
+    position: relative;
+    z-index: 100;
+  }
+  
+  &:before, &:after {
+      content:'';
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+  }
+  
+  &:before {
+      transform: translate3d(-100%, 0, 0);
+      border: 2.5px solid white;
+      background-color: white;
+      transition: transform 300ms ease-in-out;
+  }
+  
+  &:after {
+      background-color: $color-brand;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 300ms 300ms cubic-bezier(.16,.73,.58,.62);
+  }
+  
+  &:hover {
+    border: 2.5px solid $color-brand;
+      &:before {
+          transform: translate3d(0,0,0);
+      }
+      
+      &:after {
+        transform: translate3d(0,0,0);
+      }
+
+      span{
+        color: white;
+      }
+  }
+}
+
 .btn.btn-primary{
     background-color: #000;
     border-color: #000;

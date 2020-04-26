@@ -1,18 +1,28 @@
 <template>
   <div class="product-landing-page">
-    <div class="hero-banner" style="background-image: url('./images/hero_img.png');">
+    <div class="hero-banner">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <div class="copy-container">
               <h1>Shop the Look</h1>
               <!-- eslint-disable-next-line max-len -->
               <h4>Include an add all products. Lorem ipsum dolor sit amet, consectetur</h4>
-              <a class="btn btn-primary"
-                href="#productListing"
-                v-smooth-scroll="{ duration: 1000, updateHistory: false }"
-              >See Items</a>
+              <div class="button-group">
+                <div class="button-primary">
+                  <span>Buy Look</span>
+                </div>
+                <div class="button-secondary"
+                  href="#productListing"
+                  v-smooth-scroll="{ duration: 1000, updateHistory: false }"
+                >
+                  <span>See Items</span>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-md-4 hero-img">
+            <img src="/images/hero_img2.png">
           </div>
         </div>
       </div>
@@ -68,15 +78,30 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+@import "../styles/_variables.scss";
+
 .hero-banner {
-  height: calc(100vh - 56px);
-  //background-repeat: no-repeat;
-  //background-position: center center;
-  background-size: cover;
+  height: calc(100vh - 50px);
+  margin: 30px;
+  background: $bg-color;
   .copy-container{
     margin-top: 30vh;
-    color:white;
+    width: 450px;
+
+    h1{
+      padding-bottom: 20px;
+    }
+
+    h4{
+      padding-bottom: 20px;
+    }
   }
+  .button-group{
+    display: flex;
+  }
+  // .hero-img{
+  //   border: 1px solid red;
+  // }
 }
 .form-categories{
   width:200px;

@@ -136,18 +136,9 @@ export default {
 @import 'styles/index.scss';
 #app {
   font-family: 'Muli', sans-serif;
+  letter-spacing: 2.5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2{
-  font-weight: 700;
-  color: black;
-}
-
-h4 {
-  font-weight: 600;
-  color: grey;
 }
 
 .cart-count{
@@ -186,9 +177,14 @@ h4 {
   display: flex;
   position: relative;
   border-bottom: 2px solid black;
+  padding: 20px;
 
   .navbar-brand{
     display: flex;
+
+    img{
+      width: 150px;
+    }
   }
 }
 
