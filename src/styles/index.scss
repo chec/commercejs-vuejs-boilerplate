@@ -19,9 +19,12 @@ h1, h2{
   color: black;
 }
 
+h3, h4{
+  color: #454545;
+}
+
 h4 {
   font-weight: 600;
-  color: grey;
 }
 
 .bg-dark{
@@ -52,7 +55,7 @@ h4 {
   text-align: center;
   color: white;
   background-color: black;
-  padding: 15px 25px;
+  padding: 12px 22px;
   margin-right: 20px;
   text-transform: uppercase;
   position: relative;
@@ -104,8 +107,8 @@ h4 {
 .button-secondary {
   color: black;
   background-color: transparent;
-  border: 2.5px solid black;
-  padding: 15px 25px;
+  border: 2px solid black;
+  padding: 12px 22px;
   text-align: center;
   text-transform: uppercase;
   position: relative;
@@ -129,7 +132,7 @@ h4 {
   
   &:before {
       transform: translate3d(-100%, 0, 0);
-      border: 2.5px solid white;
+      border: 2px solid white;
       background-color: white;
       transition: transform 300ms ease-in-out;
   }
@@ -141,7 +144,7 @@ h4 {
   }
   
   &:hover {
-    border: 2.5px solid $color-brand;
+    border: 2px solid $color-brand;
       &:before {
           transform: translate3d(0,0,0);
       }

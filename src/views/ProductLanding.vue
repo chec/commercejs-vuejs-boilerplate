@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="col-md-4 hero-img">
-            <img src="/images/hero_img2.png">
+            <img src="/images/hero_img.png">
           </div>
         </div>
       </div>
@@ -90,6 +90,7 @@ export default {
 
     h1{
       padding-bottom: 20px;
+      color: white;
     }
 
     h4{

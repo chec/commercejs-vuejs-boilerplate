@@ -3,7 +3,7 @@
     <div class="cart-heading clearfix">
       <div class="row">
         <div class="col-6">
-          <div class="title">Items in your Cart</div>
+          <h3>Items in your Cart</h3>
         </div>
         <div class="col-6" v-if="cart.line_items.length">
           <button class="btn btn-primary checkout" @click="$emit('checkout')">Checkout</button>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="no-cart" v-else>
-      <h5 class="text-center">Your cart appears to be empty</h5>
+      <p class="text-center">Your cart appears to be empty</p>
     </div>
   </div>
 </template>
@@ -54,7 +54,8 @@ export default {
 <style scoped lang="scss">
 
   .cart-items-container{
-    background-color: #F1F3F4;
+    background-color: #fff;
+    border-bottom: 2px solid black;
     position: relative;
     margin-top:0rem;
     padding: 2rem 0;
@@ -65,12 +66,12 @@ export default {
   }
   .cart-heading{
     padding:0 2rem;
-    border-bottom: 1px solid rgba(28,28,28,.25);
+    border-bottom: 1px solid #000;
     padding-bottom: 2rem;
-    .title{
+    h3{
       margin-top: 2px;
-      font-size: 24px;
       float: left;
+      font-size: 22px;
     }
     .checkout, .clear-cart{
       float: right;

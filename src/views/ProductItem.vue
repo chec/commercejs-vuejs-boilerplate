@@ -36,12 +36,15 @@
                                       :name="variant.name"
                                       placeholder="Choose..."
                                   > -->
+                                  <div class="variant-group">
                                       <div
+                                          class="option"
                                           :value="option"
                                           :key="index"
                                           v-for="(option, index) in variant.options">
-                                        <span>{{option.name}}</span>
+                                        {{option.name}}
                                       </div>
+                                    </div>
                                   <!-- </select> -->
                               </div>
                           </div>
@@ -67,13 +70,13 @@
                               </div>
                           </div>
                           <div class="col-md-6">
-                              <button
+                              <div
                                 @click="addToCart()"
                                 :disabled="quantityWarning.enabled"
-                                class="btn btn-primary"
+                                class="button-primary"
                               >
-                                Add to Cart
-                              </button>
+                                <span>Add to Cart</span>
+                              </div>
                               <div
                                 v-if="quantityWarning.enabled"
                                 class="quantity-remaining swatch-red"
@@ -137,6 +140,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import "../styles/_variables.scss";
 
     .btn{
         margin-top: 32px;
@@ -165,10 +169,27 @@ export default {
       min-height:80vh;
       margin: 0 30px;
       padding: 20vh 0;
-      background: #F1F3F4;
-      background: -moz-linear-gradient(top,  #fff 0%, #F1F3F4 100%);
-      background: -webkit-linear-gradient(top,  #fff 0%,#F1F3F4 100%);
-      background: linear-gradient(to bottom,  #fff 0%,#F1F3F4 100%);
+      background: $bg-color;
+      background: -moz-linear-gradient(top,  #fff 0%, $bg-color 100%);
+      background: -webkit-linear-gradient(top,  #fff 0%, $bg-color 100%);
+      background: linear-gradient(to bottom,  #fff 0%, $bg-color 100%);
+
+      .button-primary{
+        font-size: 12px;
+      }
+
+      .variant-group{
+        display: flex;
+
+        .option{
+          border: 2px solid black;
+          margin-right: 20px;
+          width: 40px;
+          height: 40px;
+          text-align: center;
+          padding-top: 4px;
+        }
+      }
 
     }
 </style>

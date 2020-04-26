@@ -134,20 +134,20 @@ export default {
 </script>
 <style lang="scss">
 @import 'styles/index.scss';
+@import 'styles/_variables.scss';
 #app {
   font-family: 'Muli', sans-serif;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.75px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .cart-count{
-  background-color: #F6A58C;
+  background-color: $color-brand;
   width: 20px;
   height: 20px;
-  font-size: 13px;
-  color: #1c1c1c;
-  font-weight: 600;
+  font-size: 11px;
+  color: white;
   border-radius: 50%;
   text-align: center;
   padding-top: 2px;
