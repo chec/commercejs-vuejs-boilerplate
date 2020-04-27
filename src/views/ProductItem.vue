@@ -39,7 +39,7 @@
                                   <div class="variant-group">
                                       <div
                                           class="option"
-                                          :value="option"
+                                          :value="option.id"
                                           :key="index"
                                           v-for="(option, index) in variant.options">
                                         {{option.name}}
