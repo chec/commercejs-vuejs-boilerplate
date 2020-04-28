@@ -5,10 +5,10 @@
             <div class="col-12">
               <div class="card product-item">
                 <div class="row">
-                  <div class="col-6 text-center" v-if="index % 2 === 0">
+                  <div class="col-8 text-center"  v-if="index % 2 === 0">
                     <img class="card-img-top" :src="product.media.source" alt="Card image cap">
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="card-body">
                       <h2 class="card-title text-center">{{product.name}}</h2>
                       <h4 class="card-price text-center">${{product.price.formatted}}</h4>
@@ -21,67 +21,46 @@
                         </span>
                       </p>
                       <div
-                        class="card-text text-center"
+                        class="card-text "
                         v-html="product.description"
                       >Loading...</div>
                       <div class="row justify-content-center" style="margin-top:2rem">
-                          <div class="col-md-6 text-left"  v-if="product.variants">
+                          <div class="col-md-12 text-left"  v-if="product.variants">
                               <div class="form-group"
                                   :key="index"
                                   v-for="(variant, index) in product.variants">
                                   <label for="">{{variant.name}}</label>
-                                  <!-- <select
+                                  <select
                                       v-model="selectedVariant"
                                       class="form-control"
                                       :name="variant.name"
                                       placeholder="Choose..."
-                                  > -->
-                                  <div class="variant-group">
-                                      <div
-                                          class="option"
-                                          :value="option.id"
-                                          :key="index"
-                                          v-for="(option, index) in variant.options">
-                                        {{option.name}}
-                                      </div>
-                                    </div>
-                                  <!-- </select> -->
-                              </div>
-                          </div>
-                          <div class="col-md-6 text-left">
-                              <div class="form-group">
-                                  <label for="">Quantity</label>
-                                  <select
-                                      v-model="selectedAmount"
-                                      @change="checkQuantity()"
-                                      class="form-control"
-                                      name="amount"
-                                      placeholder="Choose..."
                                   >
                                       <option value="">Choose...</option>
                                       <option
-                                        :value="amount"
-                                        :key="index"
-                                        v-for="(amount, index) in 10"
-                                      >
-                                          {{amount}}
+                                          :value="option"
+                                          :key="index"
+                                          v-for="(option, index) in variant.options">
+                                          {{ option.name }}
                                       </option>
                                   </select>
                               </div>
                           </div>
-                          <div class="col-md-6">
-                              <div
-                                @click="addToCart()"
-                                :disabled="quantityWarning.enabled"
-                                class="button-primary"
-                              >
-                                <span>Add to Cart</span>
+                          <div class="col-md-12 text-left">
+                              <div class="form-group clearfix">
+                                  <input
+                                    v-model="selectedAmount"
+                                    class="form-control quantity-input"
+                                    type="text"
+                                  >
+                                  <div
+                                    @click="addToCart()"
+                                    :disabled="quantityWarning.enabled"
+                                    class="button-primary btn-add-to-cart "
+                                  >
+                                    <span>Add to Cart</span>
+                                  </div>
                               </div>
-                              <div
-                                v-if="quantityWarning.enabled"
-                                class="quantity-remaining swatch-red"
-                              >
-                              Only {{quantityWarning.amount}} Remaining</div>
                           </div>
                       </div>
                     </div>
@@ -104,7 +83,7 @@ export default {
   data() {
     return {
       selectedVariant: '',
-      selectedAmount: '',
+      selectedAmount: 1,
       quantityWarning: {
         enabled: false,
         amount: '',
@@ -158,6 +137,7 @@ export default {
     }
     .card-text{
         min-height: 195px;
+        text-align:justify;
     }
     .quantity-remaining{
         text-align: right;
@@ -191,5 +171,16 @@ export default {
         }
       }
 
+    }
+    .quantity-input{
+      width: 48px;
+      text-align: center;
+      float: left;
+    }
+    .btn-add-to-cart{
+      width: calc(100% - 58px);
+      float: right;
+      margin-right:0px;
+      border-radius: 4px;
     }
 </style>

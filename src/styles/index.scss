@@ -55,18 +55,18 @@ h4 {
   text-align: center;
   color: white;
   background-color: black;
-  padding: 12px 22px;
-  margin-right: 20px;
+  padding: 15px 22px;
+  font-weight: 800;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  
+
   span {
       position: relative;
       z-index: 100;
   }
-  
+
   &:before, &:after {
       content:'';
       position: absolute;
@@ -76,7 +76,7 @@ h4 {
       top: 0;
       left: 0;
   }
-  
+
   &:before {
       transform: translate3d(-100%, 0, 0);
       background-color: white;
@@ -86,18 +86,18 @@ h4 {
         color: black;
       }
   }
-  
+
   &:after {
       background-color: $color-brand;
       transform: translate3d(100%, 0, 0);
       transition: transform 300ms 300ms cubic-bezier(.16,.73,.58,.62);
   }
-  
+
   &:hover {
       &:before {
           transform: translate3d(0,0,0);
       }
-      
+
       &:after {
           transform: translate3d(0,0,0);
       }
@@ -114,12 +114,12 @@ h4 {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  
+
   span {
     position: relative;
     z-index: 100;
   }
-  
+
   &:before, &:after {
       content:'';
       position: absolute;
@@ -129,26 +129,26 @@ h4 {
       top: 0;
       left: 0;
   }
-  
+
   &:before {
       transform: translate3d(-100%, 0, 0);
       border: 2px solid white;
       background-color: white;
       transition: transform 300ms ease-in-out;
   }
-  
+
   &:after {
       background-color: $color-brand;
       transform: translate3d(100%, 0, 0);
       transition: transform 300ms 300ms cubic-bezier(.16,.73,.58,.62);
   }
-  
+
   &:hover {
     border: 2px solid $color-brand;
       &:before {
           transform: translate3d(0,0,0);
       }
-      
+
       &:after {
         transform: translate3d(0,0,0);
       }
@@ -187,6 +187,9 @@ h4 {
         box-shadow:none;
         color: white;
     }
+}
+.form-control{
+  height: 48px !important;
 }
 .hide-mobile{
     display: block;
