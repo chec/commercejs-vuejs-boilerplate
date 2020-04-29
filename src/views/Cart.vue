@@ -56,6 +56,7 @@ export default {
 @import "../styles/_variables.scss";
 
   .cart-container{
+    transition:margin-top .3s linear;
     background-color: rgba(255, 255, 255, .9);
     position: fixed;
     margin: 40px;
@@ -87,14 +88,21 @@ export default {
         text-align: right;
       }
       .clear-cart{
+        transition:margin-right .3s linear;
         padding-top:4px;
+        margin-right: 15px;
         font-size: 14px;
         text-decoration: underline;
         cursor: pointer;
       }
     }
     &.is-scrolled{
+      transition:margin-top .3s linear;
       margin-top: 101px;
+      .clear-cart{
+        transition:margin-right .3s linear;
+        margin-right: 0;
+      }
     }
     .no-cart {
       padding: 2.5rem 1rem 0;
