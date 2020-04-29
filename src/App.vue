@@ -14,7 +14,7 @@
         </svg>
       </router-link>
       <ul class="navbar-nav navbar-main ml-auto">
-        <li class="nav-item hide-mobile" style="position: relative;">
+        <li class="nav-item" style="position: relative;">
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
             <transition name="fade">
               <img v-if="!uiStates.cartVisible"
@@ -169,7 +169,7 @@ export default {
   padding: 20px 30px;
   justify-content: space-between;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   &.navbar-filled{
     transition: all .3s linear;
     background-color: #fff;
@@ -224,6 +224,7 @@ export default {
       position: absolute;
       top: -3px;
       right: -2px;
+      font-weight: 800;
     }
   }
 
@@ -263,5 +264,11 @@ export default {
 .fade-enter, .fade-leave-to{
   opacity: 0;
 }
-
+@media only screen and (max-width: 991px) {
+  .navbar .navbar-main .nav-item {
+      border-top: none;
+      margin-top: 0px;
+      padding-top: 0;
+  }
+}
 </style>

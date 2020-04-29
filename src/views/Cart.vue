@@ -1,12 +1,14 @@
 <template>
   <div class="cart-container" :class="{'is-scrolled': scrolled}">
     <div class="cart-container__heading clearfix">
-        <div class="col-6">
-          <h3>Cart</h3>
-        </div>
-        <div class="clear-cart-container" v-if="cart.line_items.length">
-          <div class="clear-cart" @click="$emit('clear-cart')">Clear Cart</div>
-        </div>
+       <div class="row">
+         <div class="col-6">
+           <h3>Cart</h3>
+         </div>
+         <div class="col-6 clear-cart-container" v-if="cart.line_items.length">
+           <div class="clear-cart" @click="$emit('clear-cart')">Clear Cart</div>
+         </div>
+       </div>
     </div>
     <div v-if="cart.line_items.length">
       <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__item">
@@ -57,7 +59,7 @@ export default {
     background-color: rgba(255, 255, 255, .9);
     position: fixed;
     margin: 40px;
-    padding: 2rem 0 1rem;
+    padding: 1rem 0 1rem;
     overflow-x:auto;
     width: 500px;
     right: 20px;
@@ -73,11 +75,9 @@ export default {
       right:28px;
     }
     &__heading{
-      padding:0 20px 22px;
+      padding:0 0px 11px;
+      margin: 0 20px;
       border-bottom: 1px solid #000;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
       h3{
         font-size: 22px;
         text-transform: uppercase;
@@ -87,8 +87,10 @@ export default {
         text-align: right;
       }
       .clear-cart{
+        padding-top:4px;
+        font-size: 14px;
+        text-decoration: underline;
         cursor: pointer;
-
       }
     }
     &.is-scrolled{
@@ -103,6 +105,7 @@ export default {
       padding:20px;
       text-align: left;
       display: flex;
+      border-bottom: 1px solid #D4D4D4;
       &-thumb {
         max-width: 25%;
         padding-right: 8px;
