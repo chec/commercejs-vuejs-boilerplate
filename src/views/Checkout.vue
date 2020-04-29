@@ -3,6 +3,20 @@
     <div class="checkout-bg" style="background-image: url('./images/hero-img.jpg');"></div>
     <div class="container checkout-container">
       <div class="row">
+        <div class="col-md-12">
+          <transition name="fade">
+            <div v-if="message.copy !== ''"
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+            >
+              <strong>Holy guacamole!</strong> an error occured:
+              <hr>
+              <p v-html="message.copy">Loading...</p>
+            </div>
+          </transition>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-7 order-sm-2 order-md-1">
           <div class="form-container">
             <div class="col-md-12" style="z-index: 2;">
@@ -150,7 +164,10 @@
                   </div>
                 </div>
                 <div class="col-12 show-mobile">
-                  <div class="btn btn-primary mb-4" @click="captureCheckout()">Confirm Order</div>
+                  <button
+                    class="btn btn-primary mb-4"
+                    @click="captureCheckout()"
+                  >Confirm Order</button>
                 </div>
               </div>
             </div>
@@ -158,45 +175,51 @@
         </div>
         <div class="col-md-5 order-sm-1 order-md-2">
           <div class="cart-outer-container">
-            <div v-if="cart.line_items" class="cart-container">
-              <div class="cart-item" v-for="(item, index) in cart.line_items" :key="index">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="thumb-container">
-                      <img class="cart-thumb" :src="item.media.source" alt="">
+            <div class="cart-container">
+              <div v-if="cart.line_items.length">
+                <div class="cart-item" v-for="(item, index) in cart.line_items" :key="index">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="thumb-container">
+                        <img class="cart-thumb" :src="item.media.source" alt="">
+                      </div>
                     </div>
-                  </div>
-                  <div class="col-8">
-                    <div>
-                      <div class="name">{{item.name}}</div>
-                      <div class="quantity"><strong>Quantity:</strong> {{item.quantity}}</div>
-                      <div
-                        v-if="item.variants.length"
-                        class="quantity"
-                      ><strong>Size:</strong> {{item.variants[0].option_name}}</div>
+                    <div class="col-8">
+                      <div>
+                        <div class="name">{{item.name}}</div>
+                        <div class="quantity"><strong>Quantity:</strong> {{item.quantity}}</div>
+                        <div
+                          v-if="item.variants.length"
+                          class="quantity"
+                        ><strong>Size:</strong> {{item.variants[0].option_name}}</div>
+                      </div>
+                      <div class="price">
+                        <!-- eslint-disable-next-line max-len -->
+                        ${{item.price.formatted * item.quantity}}
+                      </div>
+                      <button
+                        class="badge badge-danger"
+                        @click="$emit('remove-from-cart', item.id)"
+                      >
+                        Remove
+                      </button>
                     </div>
-                    <div class="price">
-                      <!-- eslint-disable-next-line max-len -->
-                      ${{item.price.formatted * item.quantity}}
-                    </div>
-                    <button
-                      class="badge badge-danger"
-                      @click="$emit('remove-from-cart', item.id)"
-                    >
-                      Remove
-                    </button>
                   </div>
                 </div>
+                <div class="cart-item total text-right">
+                  <strong>Total:</strong> {{cart.subtotal.formatted_with_symbol}}
+                </div>
               </div>
-              <div class="cart-item total text-right">
-                <strong>Total:</strong> {{cart.subtotal.formatted_with_symbol}}
+              <div class="no-products-in-cart" v-else>
+                <font-awesome-icon size="4x" icon="sad-cry" />
+                <h5>Your cart appears to be empty</h5>
               </div>
             </div>
           </div>
-          <div
+          <button
             class="btn btn-primary hide-mobile"
             @click="captureCheckout()"
-          >Confirm Order</div>
+          >Confirm Order</button>
         </div>
       </div>
     </div>
@@ -204,6 +227,10 @@
 </template>
 
 <script>
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSadCry } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faSadCry);
 export default {
   name: 'Checkout',
   props: ['cart', 'merchant'],
@@ -241,11 +268,23 @@ export default {
       },
       checkoutToken: null,
       shippingOptions: [],
+      message: {
+        status: 'alert-danger',
+        copy: '',
+      },
     };
   },
   watch: {
     cart() {
       this.generateToken();
+    },
+    message: {
+      handler() {
+        setTimeout(() => {
+          this.message.copy = '';
+        }, 3000);
+      },
+      deep: true,
     },
   },
   mounted() {
@@ -287,6 +326,8 @@ export default {
         this.$parent.getCart();
         this.$router.push('/order-confirmation');
       }).catch((error) => {
+        console.log(error);
+        this.message.copy = `<strong>${error.data.status_code}</strong>: ${error.data.error.message}`;
         console.error(`Product Error: ${error.message}`);
       });
     },
@@ -367,7 +408,16 @@ export default {
     width: 445px;
     min-height: 677px;
     padding:50px 8px 10px 10px;
-
+    .no-products-in-cart{
+      color: #fff;
+      text-align: center;
+      h5{
+        margin-top: 20px;
+        font-weight: 800;
+        color:#fff;
+        text-align: center;
+      }
+    }
     .cart-item{
       position: relative;
       padding:.5rem 5px;
@@ -500,5 +550,14 @@ export default {
     line-height: 32px;
     letter-spacing: 0.2px;
     margin-bottom: 30px;
+  }
+  .alert{
+    margin-bottom: 40px;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to{
+    opacity: 0;
   }
 </style>

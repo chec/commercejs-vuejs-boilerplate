@@ -261,3 +261,7 @@ select {
   background-size: .65em auto, 100%;
   cursor: pointer;
 }
+
+.btn.disabled, .btn:disabled{
+  opacity: 1;
+}
