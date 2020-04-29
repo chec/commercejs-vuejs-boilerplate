@@ -73,7 +73,7 @@ export default {
       right:28px;
     }
     &__heading{
-      padding:0 20px 15px;
+      padding:0 20px 22px;
       border-bottom: 1px solid #000;
       display: flex;
       flex-direction: row;
