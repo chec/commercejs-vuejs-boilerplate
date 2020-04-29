@@ -1,25 +1,30 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css);
-@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;600;700;900&display=swap');
 @import 'variables';
 
 body{
-    background-color: white;
+    background-color: none;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 60px;
+  font-weight: 900;
 }
 
 h2 {
   font-size: 40px;
 }
 
-h1, h2{
+h3{
+  font-weight: 700;
+}
+
+h2{
   font-weight: 700;
   color: black;
 }
 
-h3, h4{
+h4{
   color: #454545;
 }
 
@@ -28,39 +33,27 @@ h4 {
 }
 
 .bg-dark{
-    background-color: white !important;
+    background-color: black !important;
 }
 .badge-primary{
     background-color: #808080;
     border-color: #808080;
 }
 
-.navbar-dark{
-    .navbar-nav{
-        .nav-link{
-            color:black;
-            font-weight: 600;
-        }
-    }
-}
-
-// .button-primary {
-//   position: absolute;
-//   // top: 50%;
-//   // left: 50%;
-//   transform: translate(-50%, -50%);
-// }
-
-.button-primary {
+.button-hero {
   text-align: center;
   color: white;
-  background-color: black;
+  background-color: $color-brand;
+  width: 200px;
   padding: 15px 22px;
   font-weight: 800;
   text-transform: uppercase;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  -webkit-box-shadow: 5px 5px 0px $color-accent;
+  -moz-box-shadow:    5px 5px 0px $color-accent;
+  box-shadow:         5px 5px 0px $color-accent;
 
   span {
       position: relative;
@@ -100,6 +93,57 @@ h4 {
 
       &:after {
           transform: translate3d(0,0,0);
+      }
+  }
+}
+
+.button-primary {
+  text-align: center;
+  color: white;
+  background-color: $color-brand;
+  padding: 15px 22px;
+  font-weight: 800;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0;
+
+  span {
+      position: relative;
+      z-index: 100;
+  }
+
+  &:before, &:after {
+      content:'';
+      position: absolute;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+  }
+
+  &:before {
+      transform: translate3d(-100%, 0, 0);
+      background-color: white;
+      transition: transform 300ms ease-in-out;
+  }
+
+  &:after {
+      background-color: $color-accent;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 300ms 300ms cubic-bezier(.16,.73,.58,.62);
+  }
+
+  &:hover {
+    color: black;
+      &:before {
+          transform: translate3d(0,0,0);
+      }
+
+      &:after {
+        transform: translate3d(0,0,0);
       }
   }
 }
@@ -159,33 +203,35 @@ h4 {
   }
 }
 
-.btn.btn-primary{
-    background-color: #000;
-    border-color: #000;
-    color: white;
-    border-radius: 0;
-    &:hover,
-    &:active,
-    &:focus{
-        background-color: #1c1c1c !important;
-        border-color: #1c1c1c !important;
-        box-shadow:none;
-    }
+.btn-checkout{
+  background-color: $color-green;
+  color: white;
+  border: none;
+  border-radius: 0;
+  padding: 15px 22px;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  width: 120px;
+  &:hover,
+  &:active,
+  &:focus{
+    background-color: red;
+    background-color: darken($color-green, 80%)
+  }
 }
 .btn-danger, .badge-danger{
     background-color: transparent;
-    border-color: #1c1c1c;
-    border-radius: 0;
+    border:none;
+    text-decoration: underline;
     font-size: 11px;
-    color: #1c1c1c;
+    color: $color-danger;
     cursor: pointer;
     &:hover,
     &:active,
     &:focus{
-        background-color: #1c1c1c !important;
-        border-color: #1c1c1c !important;
-        box-shadow:none;
-        color: white;
+      text-decoration: none;
     }
 }
 .form-control{
@@ -198,7 +244,6 @@ h4 {
     }
 }
 .show-mobile{
-
     display: none;
     @media only screen and (max-width: 991px) {
         display: block;

@@ -1,5 +1,6 @@
 <template>
-    <div class="product-item-container" v-if="product">
+    <!-- eslint-disable-next-line max-len -->
+    <div class="product-item-container" v-if="product" style="background-image: url('./images/product_bg_light.png');">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -32,7 +33,7 @@
                                   <label for="">{{variant.name}}</label>
                                   <select
                                       v-model="selectedVariant"
-                                      class="form-control"
+                                      class="form-control option-select"
                                       :name="variant.name"
                                       placeholder="Choose..."
                                   >
@@ -146,41 +147,42 @@ export default {
         color: #dc3545;
     }
     .product-item-container{
-      min-height:80vh;
-      margin: 0 30px;
-      padding: 20vh 0;
+      //margin: 0 30px;
+      //padding: 20vh 0;
       background: $bg-color;
-      background: -moz-linear-gradient(top,  #fff 0%, $bg-color 100%);
-      background: -webkit-linear-gradient(top,  #fff 0%, $bg-color 100%);
-      background: linear-gradient(to bottom,  #fff 0%, $bg-color 100%);
+      //height: calc(100vh - 56px);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
 
       .button-primary{
         font-size: 12px;
       }
-
-      .variant-group{
-        display: flex;
-
-        .option{
-          border: 2px solid black;
-          margin-right: 20px;
-          width: 40px;
-          height: 40px;
-          text-align: center;
-          padding-top: 4px;
-        }
-      }
-
+    }
+    .option-select{
+      border: 2px solid black;
+      border-radius: 0;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      background-color: transparent;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='13.446px' height='8.076px' enable-background='new 0 0 13.446 8.076' xml:space='preserve'%3E%3Cpolyline fill='none' stroke='%23535453' stroke-width='3' stroke-miterlimit='10' points='13.269,0.177 6.723,6.723 0.177,0.177 '/%3E%3C/svg%3E");
+      background-repeat: no-repeat, repeat;
+      background-position: right .7em top 50%, 0 0;
+      background-size: .65em auto, 100%;
+      cursor: pointer;
     }
     .quantity-input{
       width: 48px;
       text-align: center;
       float: left;
+      border: 2px solid black;
+      border-radius: 0;
     }
     .btn-add-to-cart{
       width: calc(100% - 58px);
       float: right;
       margin-right:0px;
-      border-radius: 4px;
+      border-radius: 0px;
     }
 </style>

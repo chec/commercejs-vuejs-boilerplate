@@ -5,14 +5,14 @@
           <font-awesome-icon size="4x" icon="spinner" pulse />
       </div>
     </transition>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar">
       <router-link class="navbar-brand" to="/">
         <img src="./assets/logo_forever.svg" alt="Forever21 logo">
       </router-link>
       <ul class="navbar-nav navbar-main ml-auto">
         <li class="nav-item hide-mobile" style="position: relative;">
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
-              <img src="./assets/cart_black.svg" alt="Shopping cart icon">
+              <img src="./assets/cart_icon.svg" alt="Shopping cart icon">
             <div class="cart-count" v-if="cart.total_items > 0">{{this.cart.total_items}}</div>
           </div>
         </li>
@@ -35,15 +35,13 @@
       :cart="cart"
       :orderRef="orderRef"
     />
-    <Footer/>
+    <!-- <Footer/> -->
   </div>
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faShoppingCart, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Cart from './views/Cart.vue';
-import Footer from './views/Foot.vue';
-
 
 library.add(faShoppingCart, faSpinner);
 
@@ -51,7 +49,6 @@ export default {
   name: 'app',
   components: {
     Cart,
-    Footer,
   },
   data() {
     return {
@@ -134,53 +131,64 @@ export default {
 @import 'styles/_variables.scss';
 #app {
   font-family: 'Muli', sans-serif;
-  letter-spacing: 1.75px;
+  letter-spacing: 1.25px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.cart-count{
-  background-color: $color-brand;
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
-  color: white;
-  border-radius: 50%;
-  text-align: center;
-  padding-top: 2px;
-  position: absolute;
-  top: -2px;
-  right: 0px;
-}
-.nav-cart{
-  position: relative;
-  min-width: 40px;
-  cursor: pointer;
-}
-
-.navbar-dark .navbar-toggler{
-  border-color:transparent;
-}
-
-.navbar-main .nav-item{
-  @media only screen and (max-width: 991px) {
-      border-top: 1px solid grey;
-      margin-top: 6px;
-      padding-top: 5px;
-  }
-}
-
 .navbar {
+  background-color: transparent;
+  flex-direction: row;
   display: flex;
-  position: relative;
-  border-bottom: 2px solid black;
-  padding: 20px;
+  position: fixed;
+  padding: 20px 30px;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 1;
 
-  .navbar-brand{
-    display: flex;
+  .navbar-brand {
+    img{
+      width: 175px;
+    }
+  }
+  .nav-cart {
+    position: relative;
+    cursor: pointer;
+    background-color: $color-brand;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    -webkit-box-shadow: 4px 4px 0px $color-accent;
+    -moz-box-shadow:    4px 4px 0px $color-accent;
+    box-shadow:         4px 4px 0px $color-accent;
 
     img{
-      width: 150px;
+      position: absolute;
+      top: 30%;
+      left: 22%;
+    }
+
+    .cart-count{
+      background-color: white;
+      border: 1.5px solid $color-brand;
+      width: 24px;
+      height: 24px;
+      font-size: 13px;
+      color: black;
+      border-radius: 50%;
+      text-align: center;
+      padding-left: 2px;
+      position: absolute;
+      top: -3px;
+      right: -2px;
+    }
+  }
+
+  .navbar-main .nav-item{
+    @media only screen and (max-width: 991px) {
+        border-top: 1px solid grey;
+        margin-top: 6px;
+        padding-top: 5px;
     }
   }
 }
