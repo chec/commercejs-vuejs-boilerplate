@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-container">
+  <div class="cart-container" :class="{'is-scrolled': scrolled}">
     <div class="cart-container__heading clearfix">
         <div class="col-6">
           <h3>Cart</h3>
@@ -7,9 +7,6 @@
         <div class="flex" v-if="cart.line_items.length">
           <div class="clear-cart" @click="$emit('clear-cart')">Clear Cart</div>
         </div>
-    </div>
-    <div class="close" @click="$parent.uiStates.cartVisible = false">
-      <font-awesome-icon icon="times" />
     </div>
     <div v-if="cart.line_items.length">
       <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__item">
@@ -49,7 +46,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 library.add(faTimes);
 export default {
   name: 'Cart',
-  props: ['cart'],
+  props: ['cart', 'scrolled'],
 };
 </script>
 
@@ -58,13 +55,14 @@ export default {
 
   .cart-container{
     background-color: rgba(255, 255, 255, .9);
-    position: absolute;
+    position: fixed;
     margin: 40px;
     padding: 2rem 0 1rem;
     overflow-x:auto;
     width: 500px;
     right: 20px;
     z-index: 1;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
 
     &__heading{
       padding:0 20px 15px;
@@ -79,6 +77,9 @@ export default {
       .clear-cart{
         cursor: pointer;
       }
+    }
+    &.is-scrolled{
+      margin-top: 101px;
     }
     .no-cart {
       padding: 2.5rem 1rem 0;
