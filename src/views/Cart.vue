@@ -12,14 +12,14 @@
       <font-awesome-icon icon="times" />
     </div>
     <div v-if="cart.line_items.length">
-      <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__items">
-        <img class="cart-container__items-thumb" :src="item.media.source" alt="">
-        <div class="cart-container__items-details">
+      <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__item">
+        <img class="cart-container__item-thumb" :src="item.media.source" alt="">
+        <div class="cart-container__item-details">
           <div class="name">{{item.name}}</div>
           <div class="quantity">Quantity: {{item.quantity}}</div>
           <div
             v-if="item.variants.length"
-            class="quantity"
+            class="variant"
           >Size: {{item.variants[0].option_name}}</div>
           <button
           class="badge badge-danger"
@@ -28,11 +28,12 @@
           Remove
         </button>
         </div>
-        <div class="cart-container__items-price">${{item.line_total.formatted_with_symbol}}</div>
+        <div class="cart-container__item-price">${{item.line_total.formatted_with_symbol}}</div>
       </div>
       <div class="cart-container__footer">
         <div class="btn-checkout" @click="$emit('checkout')"><span>Checkout</span></div>
-        <h5>{{cart.subtotal.formatted_with_symbol}}</h5>
+        <!-- eslint-disable-next-line max-len -->
+        <div class="cart-container__footer-total"><span>Total:</span> {{cart.subtotal.formatted_with_symbol}}</div>
       </div>
     </div>
     <div class="no-cart" v-else>
@@ -59,15 +60,12 @@ export default {
     background-color: rgba(255, 255, 255, .9);
     position: absolute;
     margin: 40px;
-    padding: 2rem 0;
+    padding: 2rem 0 1rem;
     overflow-x:auto;
-    min-width: 500px;
+    width: 500px;
     right: 20px;
     z-index: 1;
 
-    .badge-danger{
-      margin-top: 10px;
-    }
     &__heading{
       padding:0 20px 15px;
       border-bottom: 1px solid #000;
@@ -79,35 +77,41 @@ export default {
         text-transform: uppercase;
       }
       .clear-cart{
-        margin-right: 1rem;
         cursor: pointer;
       }
     }
-    .no-cart{
+    .no-cart {
       padding: 2.5rem 1rem 0;
     }
-    &__items{
-      width:200px;
-      padding:20px 20px;
-      text-align: center;
+    &__item {
+      position: relative;
+      width:100%;
+      padding:20px;
+      text-align: left;
       display: flex;
-      &-thumb{
-        max-width: 60%
+      &-thumb {
+        max-width: 25%;
+        padding-right: 8px;
       }
-      &-details{
-        .name{
-          font-weight: 600;
+      &-details {
+        flex-grow: 1;
+        .name {
+          font-weight: 700;
+          padding-bottom: 5px;
         }
-        .quantity{
+        .quantity, .variant {
+          font-size: 14px;
+        }
+        .badge-danger{
+          padding-top: 5px;
           font-size: 12px;
         }
       }
-      &-price{
-        border: 1px solid red;
-        float: right;
+      &-price {
+        font-weight: 700;
       }
     }
-    .close{
+    .close {
       z-index: 999;
       position: absolute;
       right: -22px;
@@ -126,10 +130,15 @@ export default {
 
     &__footer{
       display: flex;
-      padding: 20px 20px;
+      padding: 20px 30px;
+      justify-content: space-between;
 
-      .btn-checkout{
+      &-total {
+        padding-top: 9px;
 
+        span{
+          font-weight: 700;
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
-  <div class="product-landing-page">
-    <div class="hero-banner" style="background-image: url('./images/hero-img.jpg');">
+  <div class="product-landing">
+    <div class="product-landing__hero" style="background-image: url('./images/hero-img.jpg');">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
@@ -72,15 +72,20 @@ export default {
 <style scoped lang="scss">
 @import "../styles/_variables.scss";
 
-.hero-banner {
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  .copy-container{
-    margin-top: 30vh;
-    color:white;
-    width: 575px;
+.product-landing {
+  &__hero {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    .copy-container{
+      position: absolute;
+      margin-top: 30vh;
+      color:white;
+      width: 575px;
+      left: -40px;
+    }
   }
 }
 
@@ -89,10 +94,5 @@ export default {
   float: right;
   margin-top: .3rem;
 }
-.btn-clear{
-  float:right;
-  margin-top:2px;
-  margin-left:.5rem;
-  margin-top: .3rem;
-}
+
 </style>

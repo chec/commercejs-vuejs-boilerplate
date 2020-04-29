@@ -4,25 +4,16 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <div class="card product-item">
+              <div class="card">
                 <div class="row">
                   <div class="col-8 text-center"  v-if="index % 2 === 0">
-                    <img class="card-img-top" :src="product.media.source" alt="Card image cap">
+                    <img class="card-img-top" :src="product.media.source" alt="Product Image">
                   </div>
                   <div class="col-4">
                     <div class="card-body">
-                      <h2 class="card-title text-center">{{product.name}}</h2>
-                      <h4 class="card-price text-center">${{product.price.formatted}}</h4>
-                      <p class="text-center">
-                        <span class="badge badge-primary"
-                          v-for="(category, index) in product.categories"
-                          :key="index"
-                        >
-                          {{category.name}}
-                        </span>
-                      </p>
+                      <h3 class="card-title">{{product.name}}</h3>
                       <div
-                        class="card-text "
+                        class="card-text"
                         v-html="product.description"
                       >Loading...</div>
                       <div class="row justify-content-center" style="margin-top:2rem">
@@ -30,7 +21,7 @@
                               <div class="form-group"
                                   :key="index"
                                   v-for="(variant, index) in product.variants">
-                                  <label for="">{{variant.name}}</label>
+                                  <label for="">${{product.price.formatted}}</label>
                                   <select
                                       v-model="selectedVariant"
                                       class="form-control option-select"
@@ -122,41 +113,61 @@ export default {
 <style scoped lang="scss">
 @import "../styles/_variables.scss";
 
-    .btn{
-        margin-top: 32px;
-        width: 100%;
+.product-item-container{
+  //margin: 0 30px;
+  //padding: 20vh 0;
+  background: $bg-color;
+  //height: calc(100vh - 56px);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  .card {
+    border:0;
+    background-color: transparent;
+    margin-bottom:2rem;
+
+    .card-body {
+      margin-top: 6em;
+
+      .card-title {
+        font-weight: 900;
+        margin-bottom: 25px;
+      }
+
+      .card-text{
+        margin-bottom: 0;
+        text-align:justify;
+      }
     }
+
+    .button-primary{
+      font-size: 12px;
+    }
+
+    .btn-add-to-cart{
+      width: calc(100% - 58px);
+      float: right;
+      margin-right:0px;
+      border-radius: 0px;
+    }
+  }
+}
+
     .form-control{
         width: 100%;
     }
-    .product-item{
-        margin-bottom:2rem;
-    }
-    .card{
-        border:0;
-        background-color: transparent;
-    }
-    .card-text{
-        min-height: 195px;
-        text-align:justify;
-    }
+
     .quantity-remaining{
         text-align: right;
         margin-top:2px;
         font-size: 11px;
         color: #dc3545;
     }
-    .product-item-container{
-      //margin: 0 30px;
-      //padding: 20vh 0;
-      background: $bg-color;
-      //height: calc(100vh - 56px);
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
 
-      .button-primary{
-        font-size: 12px;
+    .form-group {
+      label{
+        float: right;
       }
     }
     .option-select{
@@ -179,10 +190,5 @@ export default {
       border: 2px solid black;
       border-radius: 0;
     }
-    .btn-add-to-cart{
-      width: calc(100% - 58px);
-      float: right;
-      margin-right:0px;
-      border-radius: 0px;
-    }
+
 </style>

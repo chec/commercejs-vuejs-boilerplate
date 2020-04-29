@@ -3,7 +3,7 @@
 @import 'variables';
 
 body{
-    background-color: none;
+  background-color: $bg-color;
 }
 
 h1 {
@@ -214,11 +214,12 @@ h4 {
   cursor: pointer;
   font-weight: 700;
   width: 120px;
+
   &:hover,
   &:active,
   &:focus{
-    background-color: red;
-    background-color: darken($color-green, 80%)
+    background-color: darken($color-green, 15%) !important;
+    transition: all .3s ease-in-out
   }
 }
 .btn-danger, .badge-danger{
