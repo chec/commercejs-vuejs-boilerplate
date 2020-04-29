@@ -138,10 +138,10 @@ export default {
    &:after{
       z-index:1;
       position: absolute;
-      top:10px;
-      right:10px;
+      top:-30px;
+      right:30px;
       content:'';
-      background:url('../assets/sprinkles-bg.svg') center center no-repeat;
+      background:url('../assets/sprinkles-1.svg') top right no-repeat;
       width: 100%;
       height: 100%;
     }
@@ -154,11 +154,17 @@ export default {
     // box-shadow:         0px -40px 0px $color-accent;
     color: white;
 
+    .btn-add-to-cart {
+      background-color: $color-accent;
+      color: black;
+      z-index: 0;
+    }
+
     &:before{
       content:'';
       width:100%;
       background-color: $color-accent;
-      height:100px;
+      height:120px;
       position: absolute;
       top:-120px;
       left:0;
