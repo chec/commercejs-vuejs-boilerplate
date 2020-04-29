@@ -1,6 +1,6 @@
 <template>
     <!-- eslint-disable-next-line max-len -->
-    <div class="product-item-container" v-if="product" style="background-image: url('./images/product_bg_light.png');">
+    <div class="product-item-container" v-if="product" :class="{dark: index % 2, light: !(index % 2)}">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -21,7 +21,7 @@
                               <div class="form-group"
                                   :key="index"
                                   v-for="(variant, index) in product.variants">
-                                  <label for="">${{product.price.formatted}}</label>
+                                  <label>${{product.price.formatted}}</label>
                                   <select
                                       v-model="selectedVariant"
                                       class="form-control option-select"
@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-      </div>
+        </div>
 </template>
 
 <script>
@@ -113,14 +113,71 @@ export default {
 <style scoped lang="scss">
 @import "../styles/_variables.scss";
 
-.product-item-container{
-  //margin: 0 30px;
-  //padding: 20vh 0;
-  background: $bg-color;
-  //height: calc(100vh - 56px);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+.product-item-container {
+  padding: 20vh 0;
+  width: 95%;
+  margin: 0 auto;
+  top: -40px;
+  position: relative;
+
+  &.light{
+    background-color: #fff;
+
+    &:before{
+      content:'';
+      width:100%;
+      background-color: inherit;
+      height:90px;
+      position: absolute;
+      top:-80px;
+      left:0;
+      right:0;
+      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+   &:after{
+      z-index:1;
+      position: absolute;
+      top:10px;
+      right:10px;
+      content:'';
+      background:url('../assets/sprinkles-bg.svg') center center no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &.dark{
+    background-color: $color-brand;
+    // -webkit-box-shadow: 0px -40px 0px $color-accent;
+    // -moz-box-shadow:    0px -40px 0px $color-accent;
+    // box-shadow:         0px -40px 0px $color-accent;
+    color: white;
+
+    &:before{
+      content:'';
+      width:100%;
+      background-color: $color-accent;
+      height:100px;
+      position: absolute;
+      top:-120px;
+      left:0;
+      right:0;
+      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+      &:after{
+      content:'';
+      width:100%;
+      background-color: inherit;
+      height:90px;
+      position: absolute;
+      top:-80px;
+      left:0;
+      right:0;
+      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+    }
+  }
 
   .card {
     border:0;
@@ -168,6 +225,7 @@ export default {
     .form-group {
       label{
         float: right;
+        font-weight: 700;
       }
     }
     .option-select{
@@ -176,7 +234,7 @@ export default {
       -webkit-appearance: none;
       -moz-appearance: none;
       appearance: none;
-      background-color: transparent;
+      background-color: white;
       background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='13.446px' height='8.076px' enable-background='new 0 0 13.446 8.076' xml:space='preserve'%3E%3Cpolyline fill='none' stroke='%23535453' stroke-width='3' stroke-miterlimit='10' points='13.269,0.177 6.723,6.723 0.177,0.177 '/%3E%3C/svg%3E");
       background-repeat: no-repeat, repeat;
       background-position: right .7em top 50%, 0 0;
