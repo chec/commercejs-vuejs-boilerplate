@@ -4,7 +4,7 @@
         <div class="col-6">
           <h3>Cart</h3>
         </div>
-        <div class="flex" v-if="cart.line_items.length">
+        <div class="clear-cart-container" v-if="cart.line_items.length">
           <div class="clear-cart" @click="$emit('clear-cart')">Clear Cart</div>
         </div>
     </div>
@@ -63,7 +63,15 @@ export default {
     right: 20px;
     z-index: 1;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
-
+    &::after{
+      background: url("../assets/cart_bg.svg");
+      content:"";
+      position: absolute;
+      width:75px;
+      height:67px;
+      bottom:28px;
+      right:28px;
+    }
     &__heading{
       padding:0 20px 15px;
       border-bottom: 1px solid #000;
@@ -74,8 +82,13 @@ export default {
         font-size: 22px;
         text-transform: uppercase;
       }
+      .clear-cart-container{
+        width:100%;
+        text-align: right;
+      }
       .clear-cart{
         cursor: pointer;
+
       }
     }
     &.is-scrolled{
@@ -95,6 +108,7 @@ export default {
         padding-right: 8px;
       }
       &-details {
+        padding-top:11px;
         flex-grow: 1;
         .name {
           font-weight: 700;
@@ -104,12 +118,13 @@ export default {
           font-size: 14px;
         }
         .badge-danger{
-          padding-top: 5px;
           font-size: 12px;
+          padding:5px 0 0 0;
         }
       }
       &-price {
         font-weight: 700;
+        padding-top: 11px;
       }
     }
     .close {
@@ -135,7 +150,9 @@ export default {
       justify-content: space-between;
 
       &-total {
-        padding-top: 9px;
+        padding-top: 12px;
+        margin-left: 30px;
+        margin-right: auto;
 
         span{
           font-weight: 700;
