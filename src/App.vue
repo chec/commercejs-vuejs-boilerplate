@@ -20,7 +20,7 @@
             <span class="icon-container"><font-awesome-icon icon="heart"  /></span>
             <span class="copy-container">Liked by 32k</span>
             <span class="icon-container"><font-awesome-icon icon="comment"  /></span>
-            <span class="copy-container">Comments</span>
+            <span class="copy-container">312 Comments</span>
           </a>
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
             <transition name="fade">
@@ -305,7 +305,7 @@ export default {
   position: absolute;
   right: 60px;
   margin-top: 16px;
-  width: 352px;
+  width: 395px;
   color:#fff;
   &:hover,
   &:active,
