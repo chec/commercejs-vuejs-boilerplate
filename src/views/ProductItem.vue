@@ -8,10 +8,13 @@
             <div class="col-12">
               <div class="card">
                 <div class="row">
-                  <div class="col-6 text-center"  v-if="index % 2 === 0">
+                  <div class="col-md-6 text-center hide-mobile"  v-if="index % 2 === 0">
                     <img class="card-img" :src="product.media.source" alt="Product Image">
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6 text-center show-mobile">
+                    <img class="card-img" :src="product.media.source" alt="Card image cap">
+                  </div>
+                  <div class="col-md-6">
                     <div class="card-body">
                       <h3 class="card-title">{{product.name}}</h3>
                       <div
@@ -59,7 +62,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-6 text-center" v-if="index % 2 !== 0">
+                  <div class="col-md-6 text-center hide-mobile" v-if="index % 2 !== 0">
                     <img class="card-img" :src="product.media.source" alt="Card image cap">
                   </div>
                 </div>
@@ -198,9 +201,15 @@ export default {
     }
 
     .btn-add-to-cart {
+      transition:background-color .3s linear;
       background-color: $color-accent;
       color: black;
       z-index: 0;
+      &:hover, &:active, &:focus {
+        transition:background-color .3s linear;
+        color: black;
+        background-color: darken($color-accent, 25%);
+      }
     }
 
     &:before{

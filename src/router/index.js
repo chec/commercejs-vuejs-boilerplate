@@ -11,11 +11,6 @@ const routes = [
     component: () => import('../views/ProductLanding.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue'),
-  },
-  {
     path: '/checkout',
     name: 'Checkout',
     component: () => import('../views/Checkout.vue'),
@@ -24,6 +19,11 @@ const routes = [
     path: '/order-confirmation',
     name: 'Order Confirmation',
     component: () => import('../views/Confirmation.vue'),
+  },
+  {
+    path: '*',
+    name: 'Page Not Found',
+    component: () => import('../views/PageNotFound.vue'),
   },
 ];
 

@@ -3,7 +3,7 @@
     <div class="product-landing__hero" style="background-image: url('./images/hero-img.jpg');">
       <div class="container">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-12">
             <div class="copy-container">
               <h1>Forever 21</h1>
               <!-- eslint-disable-next-line max-len -->
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-      <div id="productListing" v-if="this.filteredItems">
+      <div id="productListing" class="product-listing-container" v-if="this.filteredItems">
           <ProductItem
             @add-to-cart="$emit('add-to-cart', $event)"
             class="col-md-12"
@@ -72,6 +72,9 @@ export default {
 <style scoped lang="scss">
 @import "../styles/_variables.scss";
 
+.product-listing-container{
+  margin-top: -90px;
+}
 .product-landing {
   &__hero {
     height: 100vh;
@@ -85,6 +88,24 @@ export default {
       color:white;
       width: 575px;
       left: -40px;
+      @media only screen and (max-width: 991px) {
+        text-align: center;
+        margin-top: 12vh;
+        width: 100%;
+        left: auto;
+        h1{
+          font-size: 3rem;
+        }
+        h3{
+          font-size: 1.3rem;
+        }
+        .button-hero{
+          margin: 0 auto;
+        }
+      }
+    }
+    @media only screen and (max-width: 991px) {
+        height:50vh;
     }
   }
 }

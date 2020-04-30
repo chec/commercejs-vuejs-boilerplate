@@ -5,7 +5,8 @@
           <font-awesome-icon size="4x" icon="spinner" color="#FF85B4" pulse />
       </div>
     </transition>
-    <nav class="navbar" :class="{'navbar-filled': uiStates.isScrolled}">
+        <!-- eslint-disable-next-line max-len -->
+    <nav class="navbar" :class="[{ 'navbar-filled': uiStates.isScrolled }, { 'is-confirmation': $route.matched.some(({ name }) => name === 'Order Confirmation') }]">
       <router-link class="navbar-brand" to="/">
         <!-- eslint-disable-next-line max-len -->
         <svg width="175px" viewBox="0 0 210 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,6 +184,20 @@ export default {
       }
     }
   }
+  &.is-confirmation{
+    .navbar-brand {
+      svg{
+        path{
+          transition: all .3s linear;
+          fill:#000;
+        }
+      }
+    }
+    .nav-cart{
+      opacity:0;
+      pointer-events: none;
+    }
+  }
   .navbar-brand {
     svg{
       path{
@@ -192,6 +207,7 @@ export default {
     }
   }
   .nav-cart {
+    transition:background-color .3s linear;
     position: relative;
     cursor: pointer;
     background-color: $color-brand;
@@ -225,6 +241,10 @@ export default {
       top: -3px;
       right: -2px;
       font-weight: 700;
+    }
+    &:hover, &:active, &:focus {
+      transition:background-color .3s linear;
+      background-color: darken($color-brand, 15%);
     }
   }
 
