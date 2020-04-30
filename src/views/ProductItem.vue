@@ -125,6 +125,7 @@ export default {
   &.light {
     background-color: #fff;
 
+
     &:before{
       content:'';
       width:100%;
@@ -138,14 +139,13 @@ export default {
     }
 
     &:after {
-      z-index:1;
       position: absolute;
       top:-2em;
       right:2em;
       content:'';
       background:url('../assets/sprinkles-1.svg') top right no-repeat;
-      width: 100%;
-      height: 100%;
+      width: 198.13px;
+      height: 165.3px;
     }
 
     .sprinkles-2 {
@@ -238,6 +238,7 @@ export default {
     justify-content: space-around;
 
     .card-body {
+      z-index: 999;
       margin: 6em 5em 4em;
 
       .card-title {
