@@ -8,10 +8,10 @@
             <div class="col-12">
               <div class="card">
                 <div class="row">
-                  <div class="col-8 text-center"  v-if="index % 2 === 0">
-                    <img class="card-img-top" :src="product.media.source" alt="Product Image">
+                  <div class="col-6 text-center"  v-if="index % 2 === 0">
+                    <img class="card-img" :src="product.media.source" alt="Product Image">
                   </div>
-                  <div class="col-4">
+                  <div class="col-6">
                     <div class="card-body">
                       <h3 class="card-title">{{product.name}}</h3>
                       <div
@@ -60,7 +60,7 @@
                     </div>
                   </div>
                   <div class="col-6 text-center" v-if="index % 2 !== 0">
-                    <img class="card-img-top" :src="product.media.source" alt="Card image cap">
+                    <img class="card-img" :src="product.media.source" alt="Card image cap">
                   </div>
                 </div>
               </div>
@@ -233,10 +233,12 @@ export default {
   .card {
     border:0;
     background-color: transparent;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-around;
 
     .card-body {
-      margin-top: 6em;
+      margin: 6em 5em 4em;
 
       .card-title {
         font-weight: 900;
