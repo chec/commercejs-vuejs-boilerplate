@@ -16,6 +16,12 @@
       </router-link>
       <ul class="navbar-nav navbar-main ml-auto">
         <li class="nav-item" style="position: relative;">
+          <a href="https://www.instagram.com/forever21/?hl=en" target="_blank" class="social-stats hide-mobile">
+            <span class="icon-container"><font-awesome-icon icon="heart"  /></span>
+            <span class="copy-container">Liked by 32k</span>
+            <span class="icon-container"><font-awesome-icon icon="comment"  /></span>
+            <span class="copy-container">Comments</span>
+          </a>
           <div class="nav-link nav-cart" @click="uiStates.cartVisible = !uiStates.cartVisible">
             <transition name="fade">
               <img v-if="!uiStates.cartVisible"
@@ -52,10 +58,15 @@
 </template>
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faShoppingCart, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import {
+  faShoppingCart,
+  faSpinner,
+  faHeart,
+  faComment,
+} from '@fortawesome/free-solid-svg-icons';
 import Cart from './views/Cart.vue';
 
-library.add(faShoppingCart, faSpinner);
+library.add(faShoppingCart, faSpinner, faHeart, faComment);
 
 export default {
   name: 'app',
@@ -183,6 +194,9 @@ export default {
         }
       }
     }
+    .social-stats{
+      color:$color-brand;
+    }
   }
   &.is-confirmation{
     .navbar-brand {
@@ -196,6 +210,9 @@ export default {
     .nav-cart{
       opacity:0;
       pointer-events: none;
+    }
+    .social-stats{
+      color:$color-brand;
     }
   }
   .navbar-brand {
@@ -247,14 +264,6 @@ export default {
       background-color: darken($color-brand, 15%);
     }
   }
-
-  .navbar-main .nav-item{
-    @media only screen and (max-width: 991px) {
-        border-top: 1px solid grey;
-        margin-top: 6px;
-        padding-top: 5px;
-    }
-  }
 }
 
 
@@ -290,5 +299,30 @@ export default {
       margin-top: 0px;
       padding-top: 0;
   }
+}
+.social-stats{
+  transition: color .3s linear;
+  position: absolute;
+  right: 60px;
+  margin-top: 16px;
+  width: 352px;
+  color:#fff;
+  &:hover,
+  &:active,
+  &:focus{
+    transition: color .3s linear;
+    text-decoration: none;
+    color:$color-accent;
+  }
+  .copy-container{
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    margin-right: 30px;
+  }
+}
+.icon-container{
+  font-size: 20px;
+  margin-right: 10px;
 }
 </style>

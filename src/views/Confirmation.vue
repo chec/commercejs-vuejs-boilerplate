@@ -44,7 +44,7 @@ export default {
 
   &:before {
     position: absolute;
-    top: -3em;
+    top: -1em;
     right:2em;
     content:'';
     background:url('../assets/sprinkles-1.svg') top right no-repeat;
