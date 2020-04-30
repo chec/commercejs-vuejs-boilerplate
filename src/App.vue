@@ -2,7 +2,7 @@
   <div id="app">
     <transition name="fade">
       <div v-if="uiStates.isLoading" class="page-loader">
-          <font-awesome-icon size="4x" icon="spinner" pulse />
+          <font-awesome-icon size="4x" icon="spinner" color="#FF85B4" pulse />
       </div>
     </transition>
     <nav class="navbar" :class="{'navbar-filled': uiStates.isScrolled}">

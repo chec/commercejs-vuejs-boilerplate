@@ -1,6 +1,8 @@
 <template>
     <!-- eslint-disable-next-line max-len -->
     <div class="product-item-container" v-if="product" :class="{dark: index % 2, light: !(index % 2)}">
+      <img class="sprinkles-2" src="../assets/sprinkles-2.svg">
+      <img class="sprinkles-3" src="../assets/sprinkles-3.svg">
         <div class="container">
           <div class="row">
             <div class="col-12">
@@ -65,7 +67,7 @@
             </div>
           </div>
         </div>
-        </div>
+    </div>
 </template>
 
 <script>
@@ -120,7 +122,7 @@ export default {
   top: -40px;
   position: relative;
 
-  &.light{
+  &.light {
     background-color: #fff;
 
     &:before{
@@ -135,24 +137,65 @@ export default {
       clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
     }
 
-   &:after{
+    &:after {
       z-index:1;
       position: absolute;
-      top:-30px;
-      right:30px;
+      top:-2em;
+      right:2em;
       content:'';
       background:url('../assets/sprinkles-1.svg') top right no-repeat;
       width: 100%;
       height: 100%;
     }
+
+    .sprinkles-2 {
+      position: absolute;
+      bottom: 5em;
+      left: 2em;
+    }
   }
 
-  &.dark{
+  &.light:not(:last-child) {
+    .sprinkles-3 {
+      display: none;
+    }
+  }
+
+  &.light:last-of-type {
+    .sprinkles-2 {
+      display: none;
+    }
+
+    .sprinkles-3 {
+      position: absolute;
+      bottom: 2em;
+      left: 2em;
+    }
+  }
+
+  &.light:not(:first-of-type) {
+     filter: drop-shadow(0px -20px 0px rgb(253, 251, 117));
+    // &:before{
+    //   content:'';
+    //   width:100%;
+    //   background-color: $color-accent;
+    //   height:90px;
+    //   position: absolute;
+    //   top:-80px;
+    //   left:0;
+    //   right:0;
+    //   clip-path: polygon(0% 60%, 100% 0%, 100% 50%, 0% 100%);
+    // }
+  }
+
+  &.dark {
     background-color: $color-brand;
-    // -webkit-box-shadow: 0px -40px 0px $color-accent;
-    // -moz-box-shadow:    0px -40px 0px $color-accent;
-    // box-shadow:         0px -40px 0px $color-accent;
     color: white;
+    // filter: drop-shadow(0px -40px 0px rgb(253, 251, 117));
+
+    .sprinkles-2, .sprinkles-3 {
+      display: none;
+    }
 
     .btn-add-to-cart {
       background-color: $color-accent;
@@ -167,12 +210,13 @@ export default {
       height:120px;
       position: absolute;
       top:-120px;
+      padding-bottom: 50px;
       left:0;
       right:0;
-      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+      clip-path: polygon(0% 60%, 100% 90%, 100% 100%, 0% 100%);
     }
 
-      &:after{
+    &:after{
       content:'';
       width:100%;
       background-color: inherit;
@@ -181,9 +225,10 @@ export default {
       top:-80px;
       left:0;
       right:0;
-      clip-path: polygon(0 60%, 100% 0%, 100% 100%, 0% 100%);
+      clip-path: polygon(0 60%, 100% 90%, 100% 100%, 0% 100%);
     }
   }
+
 
   .card {
     border:0;
