@@ -5,14 +5,14 @@
         <div class="row">
           <div class="col-md-4">
             <div class="copy-container">
-              <h1>Shop the Look</h1>
+              <h1>Forever 21</h1>
               <!-- eslint-disable-next-line max-len -->
-              <h3 class="pt-2 pb-3">Include an add all products. Lorem ipsum dolor sit amet, consectetur</h3>
+              <h3 class="pt-2 pb-3">Mix and match the outfit for the ultimate street yet stylish look</h3>
                 <div class="button-hero"
                   href="#productListing"
                   v-smooth-scroll="{ duration: 1000, updateHistory: false }"
                 >
-                  <span>Buy Look</span>
+                  <span>Shop Look</span>
               </div>
             </div>
           </div>

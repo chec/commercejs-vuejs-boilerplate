@@ -224,7 +224,7 @@ export default {
       position: absolute;
       top: -3px;
       right: -2px;
-      font-weight: 800;
+      font-weight: 700;
     }
   }
 
