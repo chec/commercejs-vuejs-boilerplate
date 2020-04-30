@@ -86,8 +86,11 @@ export default {
       position: absolute;
       margin-top: 30vh;
       color:white;
-      width: 575px;
+      width: 585px;
       left: -40px;
+      h1{
+        font-size: 40px;
+      }
       @media only screen and (max-width: 991px) {
         text-align: center;
         margin-top: 12vh;
