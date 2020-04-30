@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="copy-container">
-              <h1>Forever 21</h1>
+              <h1>Creativity Can't be Stopped</h1>
               <!-- eslint-disable-next-line max-len -->
               <h3 class="pt-2 pb-3">Mix and match the outfit for the ultimate street yet stylish look</h3>
                 <div class="button-hero"

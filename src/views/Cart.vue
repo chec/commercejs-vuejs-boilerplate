@@ -11,23 +11,27 @@
        </div>
     </div>
     <div v-if="cart.line_items.length">
-      <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__item">
-        <img class="cart-container__item-thumb" :src="item.media.source" alt="">
-        <div class="cart-container__item-details">
-          <div class="name">{{item.name}}</div>
-          <div class="quantity">Quantity: {{item.quantity}}</div>
-          <div
-            v-if="item.variants.length"
-            class="variant"
-          >Size: {{item.variants[0].option_name}}</div>
-          <button
-          class="badge badge-danger"
-          @click="$emit('remove-from-cart', item.id)"
-        >
-          Remove
-        </button>
+      <div class="cart-item-container">
+        <div v-for="(item, index) in cart.line_items" :key="index" class="cart-container__item">
+          <div class="cart-container__item-thumb">
+            <img :src="item.media.source" alt="">
+          </div>
+          <div class="cart-container__item-details">
+            <div class="name">{{item.name}}</div>
+            <div class="quantity">Quantity: {{item.quantity}}</div>
+            <div
+              v-if="item.variants.length"
+              class="variant"
+            >Size: {{item.variants[0].option_name}}</div>
+            <button
+            class="badge badge-danger"
+            @click="$emit('remove-from-cart', item.id)"
+          >
+            Remove
+          </button>
+          </div>
+          <div class="cart-container__item-price">${{item.line_total.formatted_with_symbol}}</div>
         </div>
-        <div class="cart-container__item-price">${{item.line_total.formatted_with_symbol}}</div>
       </div>
       <div class="cart-container__footer">
         <div class="btn-checkout" @click="$emit('checkout')"><span>Checkout</span></div>
@@ -111,12 +115,21 @@ export default {
       position: relative;
       width:100%;
       padding:20px;
+      max-height: 150px;
       text-align: left;
       display: flex;
       border-bottom: 1px solid #D4D4D4;
+      &:last-of-type{
+        border-bottom: none;
+        max-height: 149px;
+      }
       &-thumb {
-        max-width: 25%;
+        width: 25%;
         padding-right: 8px;
+        text-align: center;
+        img{
+          max-height: 100%;
+        }
       }
       &-details {
         padding-top:11px;
@@ -159,6 +172,7 @@ export default {
       display: flex;
       padding: 20px 30px;
       justify-content: space-between;
+      border-top: 1px solid #D4D4D4;
 
       &-total {
         padding-top: 12px;
@@ -171,5 +185,21 @@ export default {
       }
     }
   }
+  .cart-item-container{
+    max-height: 449px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
 
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $color-brand;
+      border-radius: 5pxpx
+    }
+  }
 </style>
