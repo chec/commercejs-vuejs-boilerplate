@@ -1,37 +1,23 @@
 <template>
-  <div class="product-landing">
-    <div class="product-landing__hero" style="background-image: url('./images/hero-img.jpg');">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="copy-container">
-              <h1>Creativity Can't be Stopped</h1>
-              <!-- eslint-disable-next-line max-len -->
-              <h3 class="pt-2 pb-3">Mix and match the outfit for the ultimate street yet stylish look</h3>
-                <div class="button-hero"
-                  href="#productListing"
-                  v-smooth-scroll="{ duration: 1000, updateHistory: false }"
-                >
-                  <span>Shop Look</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div>
+    <CategoryFilter
+      :categories="categories"
+      v-model="selectedCategory"
+    />
+    <div v-if="this.filteredItems">
+        <ProductItem
+          @add-to-cart="$emit('add-to-cart', $event)"
+          v-for="(product, index) in filteredItems" :key="index"
+          :product="product"
+          :index="index"
+        />
     </div>
-      <div id="productListing" class="product-listing-container" v-if="this.filteredItems">
-          <ProductItem
-            @add-to-cart="$emit('add-to-cart', $event)"
-            class="col-md-12"
-            v-for="(product, index) in filteredItems" :key="index"
-            :product="product"
-            :index="index"
-          />
-      </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import CategoryFilter from './CategoryFilter.vue';
 import ProductItem from './ProductItem.vue';
 
 export default {
@@ -53,70 +39,41 @@ export default {
     };
   },
   components: {
+    CategoryFilter,
     ProductItem,
   },
+  mounted() {
+    this.getCategories();
+  },
   computed: {
+    // Filters the visible products based on the category
+    // selected. If no category is selected, it returns
+    // all products.
     filteredItems() {
       let filteredProducts = this.products;
 
       if (this.selectedCategory !== '') {
         // eslint-disable-next-line max-len
-        filteredProducts = this.products.filter((product) => product.categories[0].name === this.selectedCategory);
+        filteredProducts = this.products.filter((product) => product.categories.length > 0
+          && product.categories[0].name === this.selectedCategory);
       }
 
       return filteredProducts;
     },
   },
+  methods: {
+    // Gets a listing of the available categories.
+    getCategories() {
+      axios.get(`${process.env.VUE_APP_CHEC_API_URL}/v1/categories`, {
+        headers: {
+          'X-Authorization': process.env.VUE_APP_CHEC_PUBLIC_KEY,
+        },
+      }).then((result) => {
+        this.categories = result.data;
+      }).catch((error) => {
+        console.error(`Category Retreval Error: ${error.message}`);
+      });
+    },
+  },
 };
 </script>
-<style scoped lang="scss">
-@import "../styles/_variables.scss";
-
-.product-listing-container{
-  margin-top: -90px;
-}
-.product-landing {
-  &__hero {
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    position: relative;
-    .copy-container{
-      position: absolute;
-      margin-top: 30vh;
-      color:white;
-      width: 585px;
-      left: -40px;
-      h1{
-        font-size: 40px;
-      }
-      @media only screen and (max-width: 991px) {
-        text-align: center;
-        margin-top: 12vh;
-        width: 100%;
-        left: auto;
-        h1{
-          font-size: 3rem;
-        }
-        h3{
-          font-size: 1.3rem;
-        }
-        .button-hero{
-          margin: 0 auto;
-        }
-      }
-    }
-    @media only screen and (max-width: 991px) {
-        height:50vh;
-    }
-  }
-}
-
-.form-categories{
-  width:200px;
-  float: right;
-  margin-top: .3rem;
-}
-
-</style>
