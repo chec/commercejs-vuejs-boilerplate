@@ -4,7 +4,7 @@
 
 This boilerplate was developed to help build quick eCommerce sites in the Commerce.js ecosystem. Included is a complete, unstyled, product listing, cart, and checkout workflow to aid in fast and easy development. 
 
-[![](https://github.com/chec/commercejs-vuejs-boilerplate/blob/master/src/assets/Boilerplatedemo.png)
+![](https://github.com/chec/commercejs-vuejs-boilerplate/blob/master/src/assets/Boilerplatedemo.png)
 
 ## Project setup
 
