@@ -1,11 +1,13 @@
-# 🛍️ CommerceJs Boilerplate - VueJs Edition
+# CommerceJs Boilerplate - VueJs Edition 🛍️ 
 
 ## Introduction
 
 This boilerplate was developed to help build quick eCommerce sites in the Commerce.js ecosystem. Included is a complete, unstyled, product listing, cart, and checkout workflow to aid in fast and easy development. 
 
-Example project:  
-[Shoppable Campaign](https://shoppable-campaign-demo.netlify.app)
+[![](https://github.com/chec/commercejs-vuejs-boilerplate/blob/master/src/assets/Shoppable_Campaign.png)(https://shoppable-campaign-demo.netlify.app)
+
+
+[![Demo button](https://cdn.chec.io/email/assets/marketing/chec-demo-btn_gray.svg)](https://shoppable-campaign-demo.netlify.app)
 
 ## Project setup
 
