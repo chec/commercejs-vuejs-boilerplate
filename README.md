@@ -4,6 +4,7 @@
 
 This boilerplate was developed to help build quick eCommerce sites in the Commerce.js ecosystem. Included is a complete, unstyled, product listing, cart, and checkout workflow to aid in fast and easy development. 
 
+See the styled demo below
 [![Demo button](https://cdn.chec.io/email/assets/marketing/chec-demo-btn_gray.svg)](https://shoppable-campaign-demo.netlify.app)
 
 ## Project setup
