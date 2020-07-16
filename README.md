@@ -1,4 +1,4 @@
-# CommerceJs Boilerplate - VueJs Edition
+# 🛍️ CommerceJs Boilerplate - VueJs Edition
 
 ## Introduction
 
