@@ -39,3 +39,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Additional Information
 [Commerce.js SDK Docs](https://commercejs.com/docs/).  
 [Commerce.js API Docs](https://commercejs.com/docs/api/#introduction).  
+[Styled boilerplate demo](https://shoppable-campaign-demo.netlify.app/#/)
