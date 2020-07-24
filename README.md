@@ -8,9 +8,7 @@ This boilerplate was developed to help build quick eCommerce sites in the Commer
 
 ## Project setup
 
-```
-npm install
-```
+`npm install` or `yarn install` if you use [Yarn Package Manager](https://yarnpkg.com/)
 
 ### Copy example env and add Chec credentials
 ```
@@ -19,19 +17,17 @@ cp example.env .env
 Add your Commerce.js public API key found in the developer's settings of the [dashboard](https://dashboard.chec.io/settings/developer) and you are ready to begin building.  
 
 ### Compiles and hot-reloads for development
-```
-npm run serve
-```
+
+`npm run serve` or `yarn serve`
 
 ### Compiles and minifies for production
-```
-npm run build
-```
+
+`npm run build` or `yarn build`
 
 ### Lints and fixes files
-```
-npm run lint
-```
+
+`npm run lint` or `yarn lint`
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
