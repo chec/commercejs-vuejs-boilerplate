@@ -92,9 +92,9 @@ export default {
 
 <style lang="scss">
   .product-item{
-    max-width: 33%;
+    margin: 0.5rem 1rem;
     img{
-      max-width: 33%;
+      max-width: 50%;
     }
   }
 </style>

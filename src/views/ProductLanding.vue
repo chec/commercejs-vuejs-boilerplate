@@ -4,7 +4,9 @@
       :categories="categories"
       v-model="selectedCategory"
     />
-    <div v-if="this.filteredItems">
+    <div v-if="this.filteredItems"
+      class="product-listing"
+    >
         <ProductItem
           @add-to-cart="$emit('add-to-cart', $event)"
           v-for="(product, index) in filteredItems" :key="index"
@@ -77,3 +79,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .product-listing{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+</style>
