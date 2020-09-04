@@ -92,6 +92,7 @@ export default {
 
 <style lang="scss">
   .product-item{
+    max-width: 33%;
     img{
       max-width: 33%;
     }

@@ -7,7 +7,7 @@
       <span v-else>
         Close
       </span>
-      <span v-if="cart.total_items > 0">({{this.cart.total_items}})</span>
+      <span v-if="cart !== null">({{this.cart.total_items}})</span>
     </div>
     <div v-if="cartVisible">
       <h3>Cart</h3>

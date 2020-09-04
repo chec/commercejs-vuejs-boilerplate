@@ -1,83 +1,91 @@
 <template>
   <section>
-    <div v-if="message.copy !== ''"
-      style="color:red"
-    >
-      <strong>Holy guacamole!</strong> an error occured:
-      <p v-html="message.copy">Loading...</p>
-    </div>
-    <h1 class="checkout-heading">Checkout</h1>
-    <h4>Customer Details</h4>
-    <label for="">First Name</label>
-    <input v-model="fields.customer.firstname" type="text">
-    <label for="">Last Name</label>
-    <label for="">Email</label>
-    <input v-model="fields.customer.email" type="text">
-    <h4>Shipping Details</h4>
-    <label for="">Name</label>
-    <input v-model="fields.shipping.name" type="text">
-    <label for="">Street</label>
-    <input v-model="fields.shipping.street" type="text">
-    <label for="">City/Town</label>
-    <input v-model="fields.shipping.town_city" type="text">
-    <label for="">Province</label>
-    <input v-model="fields.shipping.county_state"
-      type="text"
-
-    >
-    <label for="">Country</label>
-    <input v-model="fields.shipping.country" type="text" disabled="">
-    <label for="">Postal/Zip</label>
-    <input
-      v-model="fields.shipping.postal_zip_code"
-      type="text"
-
-    >
-    <h4>Shipping Options</h4>
-    <label for="">Shipping Method</label>
-    <select
-      v-model="fields.fulfillment.shipping_method"
-      name=""
-    >
-        <option value="">Choose...</option>
-        <option
-          :key="index"
-          v-for="(option, index) in shippingOptions"
-          :value="option.id"
-        >
-          {{option.description}}
-        </option>
-    </select>
-    <h4>Payment Details</h4>
-    <label for="">Card Number</label>
-    <input v-model="fields.payment.card.number" type="text">
-    <label for="">Expiry Month</label>
-    <input v-model="fields.payment.card.expiry_month" type="text">
-    <label for="">Expiry Year</label>
-    <input v-model="fields.payment.card.expiry_year" type="text">
-    <label for="">CVC</label>
-    <input v-model="fields.payment.card.cvc" type="text">
-    <label for="">Postal Code</label>
-    <input v-model="fields.payment.card.postal_zip_code" type="text">
-    <hr>
-    <h1>Cart</h1>
-    <div v-if="cart.line_items.length">
-      <CartItem
-        @remove-from-cart="$emit('remove-from-cart', $event)"
-        v-for="(item, index) in cart.line_items"
-        :key="index"
-        :item="item"
-      />
-      <div>
-        <strong>Total:</strong> {{cart.subtotal.formatted_with_symbol}}
+    <div v-if="liveObject !== null">
+      <div v-if="message.copy !== ''"
+        style="color:red"
+      >
+        <strong>Holy guacamole!</strong> an error occured:
+        <p v-html="message.copy">Loading...</p>
       </div>
+      <h1 class="checkout-heading">Checkout</h1>
+      <h4>Customer Details</h4>
+      <label for="">First Name</label>
+      <input v-model="fields.customer.firstname" type="text">
+      <label for="">Last Name</label>
+      <label for="">Email</label>
+      <input v-model="fields.customer.email" type="text">
+      <h4>Shipping Details</h4>
+      <label for="">Name</label>
+      <input v-model="fields.shipping.name" type="text">
+      <label for="">Street</label>
+      <input v-model="fields.shipping.street" type="text">
+      <label for="">City/Town</label>
+      <input v-model="fields.shipping.town_city" type="text">
+      <label for="">Province</label>
+      <input v-model="fields.shipping.county_state"
+        type="text"
+      >
+      <label for="">Country</label>
+      <input v-model="fields.shipping.country" type="text" disabled="">
+      <label for="">Postal/Zip</label>
+      <input
+        v-model="fields.shipping.postal_zip_code"
+        type="text"
+
+      >
+      <h4>Shipping Options</h4>
+      <label for="">Shipping Method</label>
+      <select
+        v-model="fields.fulfillment.shipping_method"
+        name=""
+      >
+          <option value="">Choose...</option>
+          <option
+            :key="index"
+            v-for="(option, index) in shippingOptions"
+            :value="option.id"
+          >
+            {{option.description}}
+          </option>
+      </select>
+      <h4>Payment Details</h4>
+      <label for="">Card Number</label>
+      <input v-model="fields.payment.card.number" type="text">
+      <label for="">Expiry Month</label>
+      <input v-model="fields.payment.card.expiry_month" type="text">
+      <label for="">Expiry Year</label>
+      <input v-model="fields.payment.card.expiry_year" type="text">
+      <label for="">CVC</label>
+      <input v-model="fields.payment.card.cvc" type="text">
+      <label for="">Postal Code</label>
+      <input v-model="fields.payment.card.postal_zip_code" type="text">
+      <hr>
+      <h1>Cart</h1>
+      <div>
+        <CartItem
+          @remove-from-cart="$emit('remove-from-cart', $event)"
+          v-for="(item, index) in cart.line_items"
+          :key="index"
+          :item="item"
+        />
+        <div  v-if="shippingOptions.length">
+          <strong>Shipping:</strong> {{shippingOptions[0].price.formatted_with_symbol}}
+        </div>
+        <div v-if="liveObject.tax.amount.raw !== 0">
+          <strong>Tax:</strong> {{liveObject.tax.amount.formatted_with_symbol}}
+        </div>
+        <div>
+          <strong>Total:</strong> {{liveObject.total_due.formatted_with_symbol}}
+        </div>
+      </div>
+      <button
+        @click="captureCheckout()"
+      >Confirm Order</button>
     </div>
     <div v-else>
       <h5>Your cart appears to be empty</h5>
+      <a href="/">Take me home</a>
     </div>
-    <button
-      @click="captureCheckout()"
-    >Confirm Order</button>
   </section>
 </template>
 
@@ -86,15 +94,13 @@ import CartItem from './CartItem.vue';
 
 export default {
   name: 'Checkout',
-  props: ['cart', 'merchant'],
+  props: ['cart', 'merchant', 'checkoutToken'],
   components: {
     CartItem,
   },
   data() {
     return {
       fields: {
-        line_items_foo: null,
-        line_items: this.cart.line_items,
         customer: {
           firstname: 'John',
           lastname: 'Doe',
@@ -122,17 +128,32 @@ export default {
           },
         },
       },
-      checkoutToken: null,
       shippingOptions: [],
       message: {
         status: 'alert-danger',
         copy: '',
       },
+      liveObject: null,
     };
   },
   watch: {
-    cart() {
-      this.generateToken();
+    checkoutToken() {
+      this.generateLiveObject();
+      this.getShippingMethods(this.checkoutToken, this.fields.shipping.country);
+    },
+    selectedCountry() {
+      if (this.selectedCountry !== '' && this.selectedCounty !== '') {
+        this.getShippingMethods(this.checkoutToken, this.fields.shipping.country);
+      }
+    },
+    selectedPostal() {
+      this.calculateTax(this.fields.shipping);
+    },
+    selectedCounty() {
+      this.calculateTax(this.fields.shipping);
+    },
+    selectedFullfillment() {
+      this.checkShippingMethods(this.fields.fulfillment.shipping_method, this.fields.shipping);
     },
     message: {
       handler() {
@@ -143,23 +164,21 @@ export default {
       deep: true,
     },
   },
-  mounted() {
-    if (this.cart.id) {
-      this.generateToken();
-    }
+  computed: {
+    selectedCountry() {
+      return this.fields.shipping.country;
+    },
+    selectedPostal() {
+      return this.fields.shipping.postal_zip_code;
+    },
+    selectedCounty() {
+      return this.fields.shipping.county_state;
+    },
+    selectedFullfillment() {
+      return this.fields.fulfillment.shipping_method;
+    },
   },
   methods: {
-    generateToken() {
-      this.$commerce.checkout.generateToken(
-        this.cart.id,
-        { type: 'cart' },
-      ).then((result) => {
-        this.checkoutToken = result.id;
-        this.getShippingMethods(this.checkoutToken, this.fields.shipping.country);
-      }).catch((error) => {
-        console.error(`Token Error: ${error.message}`);
-      });
-    },
     getShippingMethods(orderKey, country) {
       this.$commerce.checkout.getShippingOptions(orderKey, { country }).then((result) => {
         this.shippingOptions = result;
@@ -182,9 +201,7 @@ export default {
         this.$parent.getCart();
         this.$router.push('/order-confirmation');
       }).catch((error) => {
-        console.log(error);
         this.message.copy = `<strong>${error.data.status_code}</strong>: ${error.data.error.message}`;
-        console.error(`Product Error: ${error.message}`);
       });
     },
     lineItemsSanitized(lineItems) {
@@ -202,6 +219,43 @@ export default {
         };
         return item;
       }, {});
+    },
+    generateLiveObject() {
+      this.$commerce.checkout.getLive(this.checkoutToken)
+        .then((response) => {
+          console.log('liveObject');
+          console.log(response);
+          this.liveObject = response;
+        })
+        .catch((error) => {
+          this.message.copy = `<strong>${error.data.status_code}</strong>: ${error.data.error.message}`;
+        });
+    },
+    checkShippingMethods(shippingId, shippingData) {
+      this.$commerce.checkout.checkShippingOption(this.checkoutToken, {
+        shipping_option_id: shippingId,
+        country: shippingData.country,
+        region: shippingData.county_state,
+      })
+        .then(() => {
+          this.generateLiveObject();
+        })
+        .catch((error) => {
+          this.message.copy = `<strong>Error:</strong>: ${error.data.error.message}`;
+        });
+    },
+    calculateTax(shippingData) {
+      this.$commerce.checkout.setTaxZone(this.checkoutToken, {
+        country: shippingData.country,
+        region: shippingData.county_state,
+        postal_zip_code: shippingData.postal_zip_code,
+      })
+        .then(() => {
+          this.generateLiveObject();
+        })
+        .catch((error) => {
+          this.message.copy = `<strong>Error:</strong>: ${error.data.error.message}`;
+        });
     },
   },
 };

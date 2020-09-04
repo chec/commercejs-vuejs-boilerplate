@@ -12,10 +12,10 @@
       @remove-from-cart="removeFromCart"
       :products="products"
       :merchant="merchant"
+      :checkout-token="checkoutToken"
       :cart="cart"
       :orderRef="orderRef"
     />
-    <!-- <Footer/> -->
   </div>
 </template>
 <script>
@@ -32,7 +32,7 @@ export default {
         business_name: 'Loading...',
       },
       products: [],
-      cart: [],
+      cart: null,
       orderRef: null,
       checkoutToken: null,
       uiStates: {
@@ -44,11 +44,13 @@ export default {
     this.getProducts();
     this.getMerchantInformation();
     this.getCart();
-
-    window.addEventListener('scroll', this.handleSCroll);
   },
-  destroyed() {
-    window.removeEventListener('scroll', this.handleSCroll);
+  watch: {
+    cart() {
+      if (this.cart.line_items.length) {
+        this.generateToken();
+      }
+    },
   },
   methods: {
     getProducts() {
@@ -101,6 +103,16 @@ export default {
     },
     checkout() {
       this.$router.push('/checkout');
+    },
+    generateToken() {
+      this.$commerce.checkout.generateToken(
+        this.cart.id,
+        { type: 'cart' },
+      ).then((result) => {
+        this.checkoutToken = result.id;
+      }).catch((error) => {
+        console.log(error);
+      });
     },
   },
 };
