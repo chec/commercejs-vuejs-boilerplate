@@ -183,6 +183,7 @@ export default {
       return;
     }
     this.generateLiveObject();
+    this.getShippingMethods(this.checkoutToken, this.fields.shipping.country);
   },
   methods: {
     /**
