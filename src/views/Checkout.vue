@@ -68,7 +68,7 @@
           :key="index"
           :item="item"
         />
-        <div  v-if="shippingOptions.length">
+        <div v-if="shippingOptions.length">
           <strong>Shipping:</strong> {{shippingOptions[0].price.formatted_with_symbol}}
         </div>
         <div v-if="liveObject.tax.amount.raw !== 0">
@@ -177,6 +177,12 @@ export default {
     selectedFullfillment() {
       return this.fields.fulfillment.shipping_method;
     },
+  },
+  mounted() {
+    if (this.checkoutToken == null) {
+      return;
+    }
+    this.generateLiveObject();
   },
   methods: {
     getShippingMethods(orderKey, country) {
