@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Cart',
+  name: 'CartItem',
   props: ['item'],
   data() {
     return {

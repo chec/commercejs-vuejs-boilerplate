@@ -60,9 +60,11 @@ export default {
     };
   },
   methods: {
-    // Checks the instock quantity for the product
-    // and disables the add to cart button if
-    // not enough stock is available.
+    /**
+     * Checks the instock quantity for the product
+     * and disables the add to cart button if
+     * not enough stock is available.
+     */
     checkQuantity() {
       this.quantityWarning.enabled = false;
       let amount = this.product.quantity;
@@ -74,7 +76,9 @@ export default {
         this.quantityWarning.amount = amount;
       }
     },
-    // Add the product to the cart.
+    /**
+     * Add the product to the cart.
+     */
     addToCart() {
       let variant = null;
       if (this.product.variants) {

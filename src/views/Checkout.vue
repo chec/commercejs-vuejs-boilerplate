@@ -185,13 +185,33 @@ export default {
     this.generateLiveObject();
   },
   methods: {
-    getShippingMethods(orderKey, country) {
-      this.$commerce.checkout.getShippingOptions(orderKey, { country }).then((result) => {
+    /**
+     * Gets the available shipping options
+     * https://commercejs.com/docs/sdk/full-sdk-reference#checkout
+     *
+     * @param {string} Checkout Token
+     * @param {object} Selected Country
+     *
+     * @return {object} List of available shipping options as defined
+     * by the merchant.
+     */
+    getShippingMethods(checkoutToken, country) {
+      this.$commerce.checkout.getShippingOptions(checkoutToken, { country }).then((result) => {
         this.shippingOptions = result;
       }).catch((error) => {
         console.error(`Product Error: ${error.message}`);
       });
     },
+    /**
+     * Capture the order and payment.
+     * https://commercejs.com/docs/sdk/checkout#capture-order
+     *
+     * @param {string} Checkout Token.
+     * @param {object} Selected products, customer information,shipping information,
+     * fullfillment option selected and payment information.
+     *
+     * @return {object} Order object to be used for reciepts.
+     */
     captureCheckout() {
       this.$commerce.checkout.capture(
         this.checkoutToken,
@@ -210,6 +230,9 @@ export default {
         this.message.copy = `<strong>${error.data.status_code}</strong>: ${error.data.error.message}`;
       });
     },
+    /**
+     * Sanitize the line items and get them ready for the order capture.
+     */
     lineItemsSanitized(lineItems) {
       return lineItems.reduce((data, lineItem) => {
         const item = data;
@@ -226,6 +249,15 @@ export default {
         return item;
       }, {});
     },
+    /**
+     * Retrieves the live object for use displaying the live cart,
+     * shipping, tax and total costs.
+     * https://commercejs.com/docs/sdk/checkout#get-the-live-object
+     *
+     * @param {string} Checkout token.
+     *
+     * @return {object} Live checkout object.
+     */
     generateLiveObject() {
       this.$commerce.checkout.getLive(this.checkoutToken)
         .then((response) => {
@@ -237,6 +269,14 @@ export default {
           this.message.copy = `<strong>${error.data.status_code}</strong>: ${error.data.error.message}`;
         });
     },
+    /**
+     * Validates the selected shipping method and applies it to the order.
+     * https://commercejs.com/docs/sdk/checkout#check-shipping-method
+     *
+     * @param {string} Shipping option id.
+     * @param {string} Country Code eg: US
+     * @param {string} Region Code eg: CA
+     */
     checkShippingMethods(shippingId, shippingData) {
       this.$commerce.checkout.checkShippingOption(this.checkoutToken, {
         shipping_option_id: shippingId,
@@ -250,6 +290,17 @@ export default {
           this.message.copy = `<strong>Error:</strong>: ${error.data.error.message}`;
         });
     },
+    /**
+     * Sets the tax zone to the order based on location.
+     * https://commercejs.com/docs/sdk/checkout#set-tax-zone
+     *
+     * @param {string} Checkout token.
+     * @param {string} Country Code eg: US
+     * @param {string} Region Code eg: CA
+     * @param {string} Postal/ZIP Code
+     *
+     * @return {object} Live checkout object.
+     */
     calculateTax(shippingData) {
       this.$commerce.checkout.setTaxZone(this.checkoutToken, {
         country: shippingData.country,

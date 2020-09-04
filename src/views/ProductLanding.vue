@@ -18,7 +18,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 import CategoryFilter from './CategoryFilter.vue';
 import ProductItem from './ProductItem.vue';
 
@@ -48,14 +47,15 @@ export default {
     this.getCategories();
   },
   computed: {
-    // Filters the visible products based on the category
-    // selected. If no category is selected, it returns
-    // all products.
+    /**
+     * Filters the visible products based on the category
+     * selected. If no category is selected, it returns
+     * all products.
+     */
     filteredItems() {
       let filteredProducts = this.products;
 
       if (this.selectedCategory !== '') {
-        // eslint-disable-next-line max-len
         filteredProducts = this.products.filter((product) => product.categories.length > 0
           && product.categories[0].name === this.selectedCategory);
       }
@@ -64,14 +64,15 @@ export default {
     },
   },
   methods: {
-    // Gets a listing of the available categories.
+    /**
+     * Retrieve a list of the categories.
+     * https://commercejs.com/docs/sdk/products#list-categories
+     *
+     * @return {object} List of categories.
+     */
     getCategories() {
-      axios.get(`${process.env.VUE_APP_CHEC_API_URL}/v1/categories`, {
-        headers: {
-          'X-Authorization': process.env.VUE_APP_CHEC_PUBLIC_KEY,
-        },
-      }).then((result) => {
-        this.categories = result.data;
+      this.$commerce.categories.list().then((result) => {
+        this.categories = result;
       }).catch((error) => {
         console.error(`Category Retreval Error: ${error.message}`);
       });

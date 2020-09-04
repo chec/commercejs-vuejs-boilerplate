@@ -7,6 +7,9 @@ import router from './router';
 
 Vue.config.productionTip = false;
 
+/**
+ * Instantiates the Commercejs SDK.
+ */
 const commerce = (typeof process.env.VUE_APP_CHEC_PUBLIC_KEY !== 'undefined')
   ? new Commerce(process.env.VUE_APP_CHEC_PUBLIC_KEY, true)
   : null;
