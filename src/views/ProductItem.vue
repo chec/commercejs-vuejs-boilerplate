@@ -81,7 +81,7 @@ export default {
      */
     addToCart() {
       let variant = null;
-      if (this.product.variants) {
+      if (this.product.variants.length !== 0) {
         variant = { [this.product.variants[0].id]: this.selectedVariant.id };
       }
       this.$emit('add-to-cart', {
